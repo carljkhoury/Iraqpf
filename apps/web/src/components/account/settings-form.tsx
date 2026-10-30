@@ -5,7 +5,7 @@ import { Badge, Button, Field, Input, PhoneInput } from '@mahalla/ui';
 import * as Dialog from '@radix-ui/react-dialog';
 import { BadgeCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Link, useRouter } from '@/i18n/navigation';
 import { type AccountType, type DemoUser, useDemoSession } from '@/lib/demo-session';
 import { LanguageSwitcher } from '../language-switcher';
@@ -26,36 +26,33 @@ export function SettingsForm() {
   const ta = useTranslations('auth');
   const router = useRouter();
   const { user, update, signOut } = useDemoSession();
-  const [draft, setDraft] = useState<DemoUser | null>(null);
+  const [edits, setEdits] = useState<Partial<DemoUser>>({});
   const [errors, setErrors] = useState<{ name?: string; email?: string; whatsapp?: string }>({});
   const [saved, setSaved] = useState(false);
 
-  useEffect(() => {
-    if (user && !draft) setDraft(user);
-  }, [user, draft]);
-
-  if (!draft) return null;
+  if (!user) return null;
+  const draft: DemoUser = { ...user, ...edits };
 
   function save(e: React.FormEvent) {
     e.preventDefault();
     const next: typeof errors = {};
-    if (draft!.name.trim().length < 2) next.name = ta('nameInvalid');
-    if (draft!.email && !EMAIL.test(draft!.email)) next.email = t('emailInvalid');
-    if (draft!.whatsapp && !normalizeIraqiMobile(draft!.whatsapp))
-      next.whatsapp = ta('phoneInvalid');
+    if (draft.name.trim().length < 2) next.name = ta('nameInvalid');
+    if (draft.email && !EMAIL.test(draft.email)) next.email = t('emailInvalid');
+    if (draft.whatsapp && !normalizeIraqiMobile(draft.whatsapp)) next.whatsapp = ta('phoneInvalid');
     setErrors(next);
     if (Object.keys(next).length) return;
     update({
-      ...draft!,
-      name: draft!.name.trim(),
-      whatsapp: draft!.whatsapp ? normalizeIraqiMobile(draft!.whatsapp)! : undefined,
+      ...draft,
+      name: draft.name.trim(),
+      whatsapp: draft.whatsapp ? normalizeIraqiMobile(draft.whatsapp)! : undefined,
     });
+    setEdits({});
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   }
 
   const set = <K extends keyof DemoUser>(key: K, value: DemoUser[K]) =>
-    setDraft((d) => (d ? { ...d, [key]: value } : d));
+    setEdits((e) => ({ ...e, [key]: value }));
 
   return (
     <form onSubmit={save} noValidate className="grid gap-5">

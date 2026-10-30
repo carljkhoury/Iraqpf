@@ -61,6 +61,7 @@ export function ListingsManager({
   const [filter, setFilter] = useState<Filter>('all');
   const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
   const [message, setMessage] = useState('');
+  const [now] = useState(() => Date.now());
 
   const run = (id: number, action: ListingAction) => {
     apply(id, action);
@@ -77,7 +78,7 @@ export function ListingsManager({
     matches(filter, m.status),
   );
   const daysLeft = (iso?: string) =>
-    iso ? Math.ceil((new Date(iso).getTime() - Date.now()) / 86_400_000) : null;
+    iso ? Math.ceil((new Date(iso).getTime() - now) / 86_400_000) : null;
 
   return (
     <div>

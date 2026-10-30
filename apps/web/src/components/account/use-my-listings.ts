@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import type { ListingStatus, MyListing } from '@/lib/my-listings';
 
 /**
@@ -10,42 +10,57 @@ import type { ListingStatus, MyListing } from '@/lib/my-listings';
  */
 const KEY = 'mahalla:demo-my-listings';
 type Override = { status?: ListingStatus | 'deleted'; expiresAt?: string };
+type Overrides = Record<number, Override>;
 
 export type ListingAction = 'pause' | 'resume' | 'renew' | 'markSold' | 'delete' | 'submit';
 
-export function useMyListings(initial: MyListing[]) {
-  const [overrides, setOverrides] = useState<Record<number, Override>>({});
+const listeners = new Set<() => void>();
+const EMPTY: Overrides = {};
+let cache: Overrides | null = null;
 
-  useEffect(() => {
-    try {
-      setOverrides(JSON.parse(window.localStorage.getItem(KEY) ?? '{}'));
-    } catch {
-      // Fall back to the original sample statuses.
-    }
-  }, []);
+function read(): Overrides {
+  if (cache) return cache;
+  try {
+    cache = JSON.parse(window.localStorage.getItem(KEY) ?? '{}') as Overrides;
+  } catch {
+    cache = {};
+  }
+  return cache;
+}
+
+function write(next: Overrides) {
+  cache = next;
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify(next));
+  } catch {
+    // Not persisted in private mode.
+  }
+  listeners.forEach((l) => l());
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+const CHANGES: Record<ListingAction, () => Override> = {
+  pause: () => ({ status: 'paused' }),
+  resume: () => ({ status: 'live' }),
+  renew: () => ({
+    status: 'live',
+    expiresAt: new Date(Date.now() + 60 * 86_400_000).toISOString(),
+  }),
+  markSold: () => ({ status: 'sold_rented' }),
+  submit: () => ({ status: 'pending_review' }),
+  delete: () => ({ status: 'deleted' }),
+};
+
+export function useMyListings(initial: MyListing[]) {
+  const overrides = useSyncExternalStore(subscribe, read, () => EMPTY);
 
   const apply = useCallback((id: number, action: ListingAction) => {
-    const change: Override =
-      action === 'pause'
-        ? { status: 'paused' }
-        : action === 'resume'
-          ? { status: 'live' }
-          : action === 'renew'
-            ? { status: 'live', expiresAt: new Date(Date.now() + 60 * 86_400_000).toISOString() }
-            : action === 'markSold'
-              ? { status: 'sold_rented' }
-              : action === 'submit'
-                ? { status: 'pending_review' }
-                : { status: 'deleted' };
-    setOverrides((prev) => {
-      const next = { ...prev, [id]: { ...prev[id], ...change } };
-      try {
-        window.localStorage.setItem(KEY, JSON.stringify(next));
-      } catch {
-        // Not persisted in private mode.
-      }
-      return next;
-    });
+    const current = read();
+    write({ ...current, [id]: { ...current[id], ...CHANGES[action]() } });
   }, []);
 
   const listings: MyListing[] = initial.flatMap((m) => {

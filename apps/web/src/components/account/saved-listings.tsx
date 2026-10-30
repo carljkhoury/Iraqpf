@@ -18,24 +18,23 @@ export function ListingIdGrid({
   limit?: number;
 }) {
   const t = useTranslations('account');
-  const [items, setItems] = useState<ListingCardData[] | null>(null);
+  const [result, setResult] = useState<{ key: string; items: ListingCardData[] } | null>(null);
   const shown = limit ? ids.slice(0, limit) : ids;
   const key = shown.join(',');
 
   useEffect(() => {
-    if (!key) {
-      setItems([]);
-      return;
-    }
+    if (!key) return;
     let cancelled = false;
     fetch(`/api/listings?ids=${key}`)
       .then((r) => r.json() as Promise<ListingCardData[]>)
-      .then((data) => !cancelled && setItems(data))
-      .catch(() => !cancelled && setItems([]));
+      .then((items) => !cancelled && setResult({ key, items }))
+      .catch(() => !cancelled && setResult({ key, items: [] }));
     return () => {
       cancelled = true;
     };
   }, [key]);
+
+  const items = !key ? [] : result?.key === key ? result.items : null;
 
   if (items === null) {
     return <div className="h-64 animate-pulse rounded-lg bg-sand-100" aria-busy="true" />;
