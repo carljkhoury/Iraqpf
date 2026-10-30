@@ -1,6 +1,6 @@
-# Platform Architecture & Technology Stack (Proposal)
+# Platform Architecture & Technology Stack
 
-> Status: **Proposed, awaiting approval (Q-02).** No code will be written until this is approved.
+> Status: **Approved (Q-02, 2026-10-30).**
 
 ## 1. Guiding principles
 
@@ -83,11 +83,11 @@ Each module owns its database tables and exposes services; modules never reach i
 
 **Locales.** `ar` (default), `en`; `ku` (Sorani) added later without schema changes.
 
-**URL structure (proposal, Q-03).**
+**URL structure (decided, Q-03).**
 - Arabic is the root: `example.iq/…`; English: `example.iq/en/…`
 - Search: `/{purpose}/{category}/{governorate}/{area}`, e.g. `/rent/apartments/baghdad/karrada` and `/en/rent/apartments/baghdad/karrada`
 - Listing: `/property/{id}-{slug}`. The ID makes the URL permanent even if the title changes.
-- **Recommendation: Latin slugs in both languages, with Arabic titles, H1s and meta descriptions on Arabic pages.** Reasons: (1) Arabic URLs become long `%D8%B4…` strings when shared on WhatsApp/Facebook, the main sharing channels in Iraq; (2) one URL structure is simpler to maintain and to extend to Kurdish; (3) Google ranks Arabic pages on their Arabic content, and Property Finder and Bayut both use this approach. Each page declares `hreflang` alternates for ar/en.
+- **Decision: Latin slugs in both languages, with Arabic titles, H1s and meta descriptions on Arabic pages.** Reasons: (1) Arabic URLs become long `%D8%B4…` strings when shared on WhatsApp/Facebook, the main sharing channels in Iraq; (2) one URL structure is simpler to maintain and to extend to Kurdish; (3) Google ranks Arabic pages on their Arabic content, and Property Finder and Bayut both use this approach. Each page declares `hreflang` alternates for ar/en.
 
 **UI text.** Never hardcoded. All strings live in message files (`ar.json`, `en.json`) using ICU syntax for plurals/gender. A CI check fails the build if a key is missing in either language.
 
@@ -100,7 +100,7 @@ Each module owns its database tables and exposes services; modules never reach i
 
 **Numbers, currency, dates.** Formatted with `Intl` APIs per locale:
 - Prices: `250,000 $` / `250,000,000 د.ع` in Arabic; `$250,000` / `IQD 250,000,000` in English. Short forms for cards (e.g. `250 مليون د.ع`, `IQD 250M`).
-- Digits: Western by default, configurable (Q-04).
+- Digits: Western by default (Q-04), switchable later.
 - Dates: Gregorian calendar, localized month names.
 - Phone: stored in E.164 (`+9647XXXXXXXXX`), validated for Iraqi mobile prefixes (075x Korek, 077x Asiacell, 078x/079x Zain), displayed as `0770 123 4567`, always left-to-right.
 

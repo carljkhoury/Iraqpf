@@ -7,7 +7,7 @@ This is the single source of truth for product decisions. Every decision has an 
 - 🔁 **Assumed**: our working assumption; build so it is easy to change, revisit later.
 - ❓ **Open**: needs an answer before the related work starts.
 
-Last updated: 2026-10-30 (end of Discovery round 1)
+Last updated: 2026-10-30 (Discovery round 2 closed)
 
 ---
 
@@ -15,7 +15,7 @@ Last updated: 2026-10-30 (end of Discovery round 1)
 
 | ID | Topic | Decision | Status |
 |----|-------|----------|--------|
-| A-01 | Brand name & domain | No name yet. Shortlist proposed in `04-brand-name-options.md`. | ❓ |
+| A-01 | Brand name | **Mahalla (محلّة)**. Domain still to be registered (check `mahalla.iq` / `.com`). | ✅ |
 | A-02 | Ownership | Founder + partner/investor. Strong local relationships, so initial listings can be sourced quickly. | ✅ |
 | A-03 | Ambition | Large, scalable, national platform. Success = listings, users, paying offices and revenue. | ✅ |
 | A-04 | Team | Founder + Claude for now. More developers later, so code must be conventional and well documented so new developers can pick it up. | ✅ |
@@ -103,14 +103,14 @@ Last updated: 2026-10-30 (end of Discovery round 1)
 
 ---
 
-## Open questions (round 2)
+## Round 2 resolutions
 
-| ID | Question | Why it matters | Claude's recommendation |
-|----|----------|----------------|-------------------------|
-| Q-01 | Pick a brand name (see `04-brand-name-options.md`). | Needed for the design system, logo and domain. | See shortlist. |
-| Q-02 | Approve the technology stack (`02-architecture.md`). | Blocks Phase 1 → database design. | Approve as proposed. |
-| Q-03 | URL style: Latin slugs for both languages (`/ar/rent/apartments/baghdad/karrada`) or Arabic slugs on Arabic pages (`/للإيجار/شقق/بغداد/الكرادة`)? | Hard to change after launch (SEO). | Latin slugs, Arabic-first titles/metadata. See architecture §5. |
-| Q-04 | Digits in the Arabic interface: Western (1,250,000) or Eastern Arabic (١٬٢٥٠٬٠٠٠)? | Affects every number on the site. | Western digits by default (what Iraqis type into phones/WhatsApp and what Bayut/PF use), with a setting to switch later. |
-| Q-05 | First paid service: OTP delivery. SMS/WhatsApp OTP has no truly free option at production scale. OK to pay for it at launch? | Phone login depends on it. | Yes. During development OTPs are logged to the console (free). |
-| Q-06 | Hosting for the first public deployment: a small VPS (~US$5–15/month) behind Cloudflare's free CDN, or free tiers only (slower, sleeps when idle)? | Reliability vs zero cost. | Free tiers for staging; the small VPS for production. |
-| Q-07 | Confirm local land units (olk) and the title-deed list with the Iraq team. | Data correctness. | Can be done in parallel; doesn't block development. |
+| ID | Question | Decision | Status |
+|----|----------|----------|--------|
+| Q-01 | Brand name | **Mahalla (محلّة)** | ✅ |
+| Q-02 | Technology stack | **Approved** as in `02-architecture.md` | ✅ |
+| Q-03 | URL style | **Latin slugs in both languages**; Arabic titles/metadata on Arabic pages; Arabic at root, English under `/en` | ✅ |
+| Q-04 | Digits in Arabic UI | **Western digits** (1,250,000) by default, switchable setting later | ✅ |
+| Q-05 | OTP cost | **Accepted** as the first paid service at launch; console OTP during development | ✅ |
+| Q-06 | Hosting | **Free tiers for staging, small VPS (~US$5–15/month) + Cloudflare for production** | ✅ |
+| Q-07 | Olk unit & title-deed list | Iraq team to confirm; does not block development | ❓ |

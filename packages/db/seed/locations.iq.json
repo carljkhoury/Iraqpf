@@ -1,0 +1,1623 @@
+{
+  "_meta": {
+    "description": "Seed data for Iraqi locations: governorate > city > neighbourhood/compound. Compiled by Claude for Mahalla.",
+    "reviewed": false,
+    "notes": [
+      "ALL entries are unreviewed (is_reviewed=false) until checked by a team member (decision G-01).",
+      "Coordinates are approximate city centres for map positioning only.",
+      "Neighbourhood lists cover the launch cities (Baghdad, Erbil, Basra) and are a starting set, not exhaustive.",
+      "Baghdad neighbourhoods carry side=karkh|rusafa as a search/display hint.",
+      "Halabja was approved as Iraq's 19th governorate by the Council of Representatives in 2025; verify status."
+    ]
+  },
+  "locations": [
+    {
+      "slug": "baghdad",
+      "type": "governorate",
+      "name": {
+        "ar": "بغداد",
+        "en": "Baghdad"
+      },
+      "center": {
+        "lat": 33.3152,
+        "lng": 44.3661
+      },
+      "is_launch_area": true,
+      "children": [
+        {
+          "slug": "baghdad",
+          "type": "city",
+          "name": {
+            "ar": "بغداد",
+            "en": "Baghdad"
+          },
+          "center": {
+            "lat": 33.3152,
+            "lng": 44.3661
+          },
+          "is_launch_area": true,
+          "children": [
+            {
+              "slug": "mansour",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المنصور",
+                "en": "Mansour"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "yarmouk",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "اليرموك",
+                "en": "Yarmouk"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "harthiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الحارثية",
+                "en": "Harthiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "qadisiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "القادسية",
+                "en": "Qadisiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "hay-al-jamia",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الجامعة",
+                "en": "Hay al-Jamia"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "adil",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي العدل",
+                "en": "Al-Adil"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "khadra",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الخضراء",
+                "en": "Al-Khadra"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "ghazaliya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الغزالية",
+                "en": "Ghazaliya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "amiriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العامرية",
+                "en": "Amiriya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "jihad",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الجهاد",
+                "en": "Al-Jihad"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "hay-al-amil",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي العامل",
+                "en": "Hay al-Amil"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "bayaa",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "البياع",
+                "en": "Al-Bayaa"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "saydiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "السيدية",
+                "en": "Saydiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "dora",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الدورة",
+                "en": "Dora"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "abu-dsheer",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "أبو دشير",
+                "en": "Abu Dsheer"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "risala",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الرسالة",
+                "en": "Al-Risala"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "shurta",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الشرطة",
+                "en": "Al-Shurta"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "shula",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الشعلة",
+                "en": "Al-Shula"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "hurriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الحرية",
+                "en": "Al-Hurriya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "kadhimiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الكاظمية",
+                "en": "Kadhimiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "utaifiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العطيفية",
+                "en": "Utaifiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "washash",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الوشاش",
+                "en": "Washash"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "iskan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الإسكان",
+                "en": "Al-Iskan"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "salhiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الصالحية",
+                "en": "Salhiya"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "daoudi",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الداودي",
+                "en": "Daoudi"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "hay-al-atibba",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الأطباء",
+                "en": "Hay al-Atibba"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "tobchi",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "التوبجي",
+                "en": "Tobchi"
+              },
+              "side": "karkh"
+            },
+            {
+              "slug": "karrada",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الكرادة",
+                "en": "Karrada"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "jadriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الجادرية",
+                "en": "Jadriya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "arasat",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العرصات",
+                "en": "Arasat"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "masbah",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المسبح",
+                "en": "Masbah"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "hay-babil",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي بابل",
+                "en": "Hay Babil"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "alwiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العلوية",
+                "en": "Alwiya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "saadoun",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "السعدون",
+                "en": "Saadoun"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "bataween",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "البتاوين",
+                "en": "Bataween"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "bab-al-sharqi",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الباب الشرقي",
+                "en": "Bab al-Sharqi"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "waziriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الوزيرية",
+                "en": "Waziriya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "adhamiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الأعظمية",
+                "en": "Adhamiya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "sulaikh",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الصليخ",
+                "en": "Sulaikh"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "shaab",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الشعب",
+                "en": "Al-Shaab"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "ur",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي أور",
+                "en": "Hay Ur"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "qahira",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي القاهرة",
+                "en": "Hay al-Qahira"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "mustansiriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المستنصرية",
+                "en": "Mustansiriya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "zayouna",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "زيونة",
+                "en": "Zayouna"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "palestine-street",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "شارع فلسطين",
+                "en": "Palestine Street"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "ghadeer",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الغدير",
+                "en": "Al-Ghadeer"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "baladiyat",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "البلديات",
+                "en": "Al-Baladiyat"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "new-baghdad",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "بغداد الجديدة",
+                "en": "New Baghdad"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "mashtal",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المشتل",
+                "en": "Al-Mashtal"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "hay-al-ameen",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الأمين",
+                "en": "Hay al-Ameen"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "hay-al-wahda",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الوحدة",
+                "en": "Hay al-Wahda"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "tell-mohammed",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "تل محمد",
+                "en": "Tell Mohammed"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "habibiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الحبيبية",
+                "en": "Habibiya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "sadr-city",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "مدينة الصدر",
+                "en": "Sadr City"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "kamaliya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الكمالية",
+                "en": "Kamaliya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "ubaidi",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العبيدي",
+                "en": "Al-Ubaidi"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "fudhailiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الفضيلية",
+                "en": "Fudhailiya"
+              },
+              "side": "rusafa"
+            },
+            {
+              "slug": "zafaraniya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الزعفرانية",
+                "en": "Zafaraniya"
+              },
+              "side": "rusafa"
+            }
+          ]
+        },
+        {
+          "slug": "bismayah",
+          "type": "city",
+          "name": {
+            "ar": "بسماية",
+            "en": "Bismayah"
+          },
+          "center": {
+            "lat": 33.18,
+            "lng": 44.62
+          }
+        },
+        {
+          "slug": "abu-ghraib",
+          "type": "city",
+          "name": {
+            "ar": "أبو غريب",
+            "en": "Abu Ghraib"
+          },
+          "center": {
+            "lat": 33.29,
+            "lng": 44.06
+          }
+        },
+        {
+          "slug": "mahmudiya",
+          "type": "city",
+          "name": {
+            "ar": "المحمودية",
+            "en": "Mahmudiya"
+          },
+          "center": {
+            "lat": 33.06,
+            "lng": 44.36
+          }
+        },
+        {
+          "slug": "tarmiyah",
+          "type": "city",
+          "name": {
+            "ar": "الطارمية",
+            "en": "Tarmiyah"
+          },
+          "center": {
+            "lat": 33.67,
+            "lng": 44.38
+          }
+        },
+        {
+          "slug": "madain",
+          "type": "city",
+          "name": {
+            "ar": "المدائن",
+            "en": "Al-Madain"
+          },
+          "center": {
+            "lat": 33.1,
+            "lng": 44.58
+          }
+        }
+      ]
+    },
+    {
+      "slug": "basra",
+      "type": "governorate",
+      "name": {
+        "ar": "البصرة",
+        "en": "Basra"
+      },
+      "center": {
+        "lat": 30.5085,
+        "lng": 47.7804
+      },
+      "is_launch_area": true,
+      "children": [
+        {
+          "slug": "basra",
+          "type": "city",
+          "name": {
+            "ar": "البصرة",
+            "en": "Basra"
+          },
+          "center": {
+            "lat": 30.5085,
+            "lng": 47.7804
+          },
+          "is_launch_area": true,
+          "children": [
+            {
+              "slug": "ashar",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العشار",
+                "en": "Al-Ashar"
+              }
+            },
+            {
+              "slug": "jazair",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الجزائر",
+                "en": "Al-Jazair"
+              }
+            },
+            {
+              "slug": "abbasiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "العباسية",
+                "en": "Al-Abbasiya"
+              }
+            },
+            {
+              "slug": "maqal",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المعقل",
+                "en": "Al-Maqal"
+              }
+            },
+            {
+              "slug": "jumhuriya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الجمهورية",
+                "en": "Al-Jumhuriya"
+              }
+            },
+            {
+              "slug": "tuwaisa",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الطويسة",
+                "en": "Al-Tuwaisa"
+              }
+            },
+            {
+              "slug": "baradiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "البراضعية",
+                "en": "Al-Baradiya"
+              }
+            },
+            {
+              "slug": "jubaila",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الجبيلة",
+                "en": "Al-Jubaila"
+              }
+            },
+            {
+              "slug": "asmai",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الأصمعي",
+                "en": "Al-Asmai"
+              }
+            },
+            {
+              "slug": "hay-al-hussein",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الحسين",
+                "en": "Hay al-Hussein"
+              }
+            },
+            {
+              "slug": "muhandiseen",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي المهندسين",
+                "en": "Hay al-Muhandiseen"
+              }
+            },
+            {
+              "slug": "qibla",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "القبلة",
+                "en": "Al-Qibla"
+              }
+            },
+            {
+              "slug": "khamsa-mil",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الخمسة ميل",
+                "en": "Khamsa Mil"
+              }
+            },
+            {
+              "slug": "risala",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "حي الرسالة",
+                "en": "Al-Risala"
+              }
+            },
+            {
+              "slug": "hakimiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الحكيمية",
+                "en": "Al-Hakimiya"
+              }
+            },
+            {
+              "slug": "manawi-basha",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "مناوي باشا",
+                "en": "Manawi Basha"
+              }
+            },
+            {
+              "slug": "andalus",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الأندلس",
+                "en": "Al-Andalus"
+              }
+            },
+            {
+              "slug": "tannuma",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "التنومة",
+                "en": "Al-Tannuma"
+              }
+            },
+            {
+              "slug": "mufawadiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "المفوضية",
+                "en": "Al-Mufawadiya"
+              }
+            },
+            {
+              "slug": "hayaniya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الحيانية",
+                "en": "Al-Hayaniya"
+              }
+            },
+            {
+              "slug": "kut-al-hajjaj",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "كوت الحجاج",
+                "en": "Kut al-Hajjaj"
+              }
+            },
+            {
+              "slug": "junaina",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الجنينة",
+                "en": "Al-Junaina"
+              }
+            },
+            {
+              "slug": "muwaffaqiya",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الموفقية",
+                "en": "Al-Muwaffaqiya"
+              }
+            },
+            {
+              "slug": "dur-al-naft",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "دور النفط",
+                "en": "Dur al-Naft"
+              }
+            }
+          ]
+        },
+        {
+          "slug": "zubair",
+          "type": "city",
+          "name": {
+            "ar": "الزبير",
+            "en": "Al-Zubair"
+          },
+          "center": {
+            "lat": 30.39,
+            "lng": 47.7
+          }
+        },
+        {
+          "slug": "abu-al-khaseeb",
+          "type": "city",
+          "name": {
+            "ar": "أبو الخصيب",
+            "en": "Abu al-Khaseeb"
+          },
+          "center": {
+            "lat": 30.44,
+            "lng": 47.98
+          }
+        },
+        {
+          "slug": "qurna",
+          "type": "city",
+          "name": {
+            "ar": "القرنة",
+            "en": "Al-Qurna"
+          },
+          "center": {
+            "lat": 31.01,
+            "lng": 47.43
+          }
+        },
+        {
+          "slug": "faw",
+          "type": "city",
+          "name": {
+            "ar": "الفاو",
+            "en": "Al-Faw"
+          },
+          "center": {
+            "lat": 29.975,
+            "lng": 48.47
+          }
+        }
+      ]
+    },
+    {
+      "slug": "erbil",
+      "type": "governorate",
+      "name": {
+        "ar": "أربيل",
+        "en": "Erbil"
+      },
+      "center": {
+        "lat": 36.1911,
+        "lng": 44.0092
+      },
+      "is_launch_area": true,
+      "region": "kurdistan",
+      "children": [
+        {
+          "slug": "erbil",
+          "type": "city",
+          "name": {
+            "ar": "أربيل",
+            "en": "Erbil"
+          },
+          "center": {
+            "lat": 36.1911,
+            "lng": 44.0092
+          },
+          "is_launch_area": true,
+          "children": [
+            {
+              "slug": "ankawa",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "عنكاوة",
+                "en": "Ankawa"
+              }
+            },
+            {
+              "slug": "iskan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "الإسكان",
+                "en": "Iskan"
+              }
+            },
+            {
+              "slug": "shorsh",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "شورش",
+                "en": "Shorsh"
+              }
+            },
+            {
+              "slug": "azadi",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "آزادي",
+                "en": "Azadi"
+              }
+            },
+            {
+              "slug": "bakhtiari",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "بختياري",
+                "en": "Bakhtiari"
+              }
+            },
+            {
+              "slug": "brayati",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "برايتي",
+                "en": "Brayati"
+              }
+            },
+            {
+              "slug": "havalan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "هفالان",
+                "en": "Havalan"
+              }
+            },
+            {
+              "slug": "mamostayan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "ماموستايان",
+                "en": "Mamostayan"
+              }
+            },
+            {
+              "slug": "nawroz",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "نوروز",
+                "en": "Nawroz"
+              }
+            },
+            {
+              "slug": "rizgari",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "رزكاري",
+                "en": "Rizgari"
+              }
+            },
+            {
+              "slug": "zanyari",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "زانياري",
+                "en": "Zanyari"
+              }
+            },
+            {
+              "slug": "gulan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "كولان",
+                "en": "Gulan"
+              }
+            },
+            {
+              "slug": "ronaki",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "روناكي",
+                "en": "Ronaki"
+              }
+            },
+            {
+              "slug": "setaqan",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "سيتاقان",
+                "en": "Setaqan"
+              }
+            },
+            {
+              "slug": "tayrawa",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "تيراوة",
+                "en": "Tayrawa"
+              }
+            },
+            {
+              "slug": "daratu",
+              "type": "neighbourhood",
+              "name": {
+                "ar": "داراتو",
+                "en": "Daratu"
+              }
+            },
+            {
+              "slug": "dream-city",
+              "type": "compound",
+              "name": {
+                "ar": "دريم سيتي",
+                "en": "Dream City"
+              }
+            },
+            {
+              "slug": "italian-village",
+              "type": "compound",
+              "name": {
+                "ar": "القرية الإيطالية",
+                "en": "Italian Village"
+              }
+            },
+            {
+              "slug": "english-village",
+              "type": "compound",
+              "name": {
+                "ar": "القرية الإنكليزية",
+                "en": "English Village"
+              }
+            },
+            {
+              "slug": "american-village",
+              "type": "compound",
+              "name": {
+                "ar": "القرية الأمريكية",
+                "en": "American Village"
+              }
+            },
+            {
+              "slug": "empire-world",
+              "type": "compound",
+              "name": {
+                "ar": "إمباير وورلد",
+                "en": "Empire World"
+              }
+            }
+          ]
+        },
+        {
+          "slug": "shaqlawa",
+          "type": "city",
+          "name": {
+            "ar": "شقلاوة",
+            "en": "Shaqlawa"
+          },
+          "center": {
+            "lat": 36.4,
+            "lng": 44.32
+          }
+        },
+        {
+          "slug": "soran",
+          "type": "city",
+          "name": {
+            "ar": "سوران",
+            "en": "Soran"
+          },
+          "center": {
+            "lat": 36.65,
+            "lng": 44.54
+          }
+        },
+        {
+          "slug": "koya",
+          "type": "city",
+          "name": {
+            "ar": "كويسنجق",
+            "en": "Koya"
+          },
+          "center": {
+            "lat": 36.08,
+            "lng": 44.63
+          }
+        }
+      ]
+    },
+    {
+      "slug": "sulaymaniyah",
+      "type": "governorate",
+      "name": {
+        "ar": "السليمانية",
+        "en": "Sulaymaniyah"
+      },
+      "center": {
+        "lat": 35.5613,
+        "lng": 45.4374
+      },
+      "region": "kurdistan",
+      "children": [
+        {
+          "slug": "sulaymaniyah",
+          "type": "city",
+          "name": {
+            "ar": "السليمانية",
+            "en": "Sulaymaniyah"
+          },
+          "center": {
+            "lat": 35.5613,
+            "lng": 45.4374
+          }
+        },
+        {
+          "slug": "ranya",
+          "type": "city",
+          "name": {
+            "ar": "رانية",
+            "en": "Ranya"
+          },
+          "center": {
+            "lat": 36.255,
+            "lng": 44.883
+          }
+        },
+        {
+          "slug": "kalar",
+          "type": "city",
+          "name": {
+            "ar": "كلار",
+            "en": "Kalar"
+          },
+          "center": {
+            "lat": 34.63,
+            "lng": 45.32
+          }
+        }
+      ]
+    },
+    {
+      "slug": "duhok",
+      "type": "governorate",
+      "name": {
+        "ar": "دهوك",
+        "en": "Duhok"
+      },
+      "center": {
+        "lat": 36.8669,
+        "lng": 42.9503
+      },
+      "region": "kurdistan",
+      "children": [
+        {
+          "slug": "duhok",
+          "type": "city",
+          "name": {
+            "ar": "دهوك",
+            "en": "Duhok"
+          },
+          "center": {
+            "lat": 36.8669,
+            "lng": 42.9503
+          }
+        },
+        {
+          "slug": "zakho",
+          "type": "city",
+          "name": {
+            "ar": "زاخو",
+            "en": "Zakho"
+          },
+          "center": {
+            "lat": 37.1436,
+            "lng": 42.6819
+          }
+        }
+      ]
+    },
+    {
+      "slug": "halabja",
+      "type": "governorate",
+      "name": {
+        "ar": "حلبجة",
+        "en": "Halabja"
+      },
+      "center": {
+        "lat": 35.1778,
+        "lng": 45.9861
+      },
+      "region": "kurdistan",
+      "children": [
+        {
+          "slug": "halabja",
+          "type": "city",
+          "name": {
+            "ar": "حلبجة",
+            "en": "Halabja"
+          },
+          "center": {
+            "lat": 35.1778,
+            "lng": 45.9861
+          }
+        }
+      ]
+    },
+    {
+      "slug": "nineveh",
+      "type": "governorate",
+      "name": {
+        "ar": "نينوى",
+        "en": "Nineveh"
+      },
+      "center": {
+        "lat": 36.34,
+        "lng": 43.13
+      },
+      "children": [
+        {
+          "slug": "mosul",
+          "type": "city",
+          "name": {
+            "ar": "الموصل",
+            "en": "Mosul"
+          },
+          "center": {
+            "lat": 36.34,
+            "lng": 43.13
+          }
+        }
+      ]
+    },
+    {
+      "slug": "kirkuk",
+      "type": "governorate",
+      "name": {
+        "ar": "كركوك",
+        "en": "Kirkuk"
+      },
+      "center": {
+        "lat": 35.4681,
+        "lng": 44.3922
+      },
+      "children": [
+        {
+          "slug": "kirkuk",
+          "type": "city",
+          "name": {
+            "ar": "كركوك",
+            "en": "Kirkuk"
+          },
+          "center": {
+            "lat": 35.4681,
+            "lng": 44.3922
+          }
+        }
+      ]
+    },
+    {
+      "slug": "anbar",
+      "type": "governorate",
+      "name": {
+        "ar": "الأنبار",
+        "en": "Anbar"
+      },
+      "center": {
+        "lat": 33.4206,
+        "lng": 43.3078
+      },
+      "children": [
+        {
+          "slug": "ramadi",
+          "type": "city",
+          "name": {
+            "ar": "الرمادي",
+            "en": "Ramadi"
+          },
+          "center": {
+            "lat": 33.4206,
+            "lng": 43.3078
+          }
+        },
+        {
+          "slug": "fallujah",
+          "type": "city",
+          "name": {
+            "ar": "الفلوجة",
+            "en": "Fallujah"
+          },
+          "center": {
+            "lat": 33.35,
+            "lng": 43.78
+          }
+        }
+      ]
+    },
+    {
+      "slug": "babil",
+      "type": "governorate",
+      "name": {
+        "ar": "بابل",
+        "en": "Babil"
+      },
+      "center": {
+        "lat": 32.4637,
+        "lng": 44.4199
+      },
+      "children": [
+        {
+          "slug": "hillah",
+          "type": "city",
+          "name": {
+            "ar": "الحلة",
+            "en": "Hillah"
+          },
+          "center": {
+            "lat": 32.4637,
+            "lng": 44.4199
+          }
+        }
+      ]
+    },
+    {
+      "slug": "karbala",
+      "type": "governorate",
+      "name": {
+        "ar": "كربلاء",
+        "en": "Karbala"
+      },
+      "center": {
+        "lat": 32.616,
+        "lng": 44.0249
+      },
+      "children": [
+        {
+          "slug": "karbala",
+          "type": "city",
+          "name": {
+            "ar": "كربلاء",
+            "en": "Karbala"
+          },
+          "center": {
+            "lat": 32.616,
+            "lng": 44.0249
+          }
+        }
+      ]
+    },
+    {
+      "slug": "najaf",
+      "type": "governorate",
+      "name": {
+        "ar": "النجف",
+        "en": "Najaf"
+      },
+      "center": {
+        "lat": 32.0259,
+        "lng": 44.3462
+      },
+      "children": [
+        {
+          "slug": "najaf",
+          "type": "city",
+          "name": {
+            "ar": "النجف",
+            "en": "Najaf"
+          },
+          "center": {
+            "lat": 32.0259,
+            "lng": 44.3462
+          }
+        },
+        {
+          "slug": "kufa",
+          "type": "city",
+          "name": {
+            "ar": "الكوفة",
+            "en": "Kufa"
+          },
+          "center": {
+            "lat": 32.05,
+            "lng": 44.4
+          }
+        }
+      ]
+    },
+    {
+      "slug": "diyala",
+      "type": "governorate",
+      "name": {
+        "ar": "ديالى",
+        "en": "Diyala"
+      },
+      "center": {
+        "lat": 33.7466,
+        "lng": 44.6437
+      },
+      "children": [
+        {
+          "slug": "baqubah",
+          "type": "city",
+          "name": {
+            "ar": "بعقوبة",
+            "en": "Baqubah"
+          },
+          "center": {
+            "lat": 33.7466,
+            "lng": 44.6437
+          }
+        }
+      ]
+    },
+    {
+      "slug": "wasit",
+      "type": "governorate",
+      "name": {
+        "ar": "واسط",
+        "en": "Wasit"
+      },
+      "center": {
+        "lat": 32.5128,
+        "lng": 45.8182
+      },
+      "children": [
+        {
+          "slug": "kut",
+          "type": "city",
+          "name": {
+            "ar": "الكوت",
+            "en": "Kut"
+          },
+          "center": {
+            "lat": 32.5128,
+            "lng": 45.8182
+          }
+        }
+      ]
+    },
+    {
+      "slug": "saladin",
+      "type": "governorate",
+      "name": {
+        "ar": "صلاح الدين",
+        "en": "Saladin"
+      },
+      "center": {
+        "lat": 34.6071,
+        "lng": 43.6782
+      },
+      "children": [
+        {
+          "slug": "tikrit",
+          "type": "city",
+          "name": {
+            "ar": "تكريت",
+            "en": "Tikrit"
+          },
+          "center": {
+            "lat": 34.6071,
+            "lng": 43.6782
+          }
+        },
+        {
+          "slug": "samarra",
+          "type": "city",
+          "name": {
+            "ar": "سامراء",
+            "en": "Samarra"
+          },
+          "center": {
+            "lat": 34.1959,
+            "lng": 43.8857
+          }
+        }
+      ]
+    },
+    {
+      "slug": "dhi-qar",
+      "type": "governorate",
+      "name": {
+        "ar": "ذي قار",
+        "en": "Dhi Qar"
+      },
+      "center": {
+        "lat": 31.0439,
+        "lng": 46.2576
+      },
+      "children": [
+        {
+          "slug": "nasiriyah",
+          "type": "city",
+          "name": {
+            "ar": "الناصرية",
+            "en": "Nasiriyah"
+          },
+          "center": {
+            "lat": 31.0439,
+            "lng": 46.2576
+          }
+        }
+      ]
+    },
+    {
+      "slug": "maysan",
+      "type": "governorate",
+      "name": {
+        "ar": "ميسان",
+        "en": "Maysan"
+      },
+      "center": {
+        "lat": 31.8356,
+        "lng": 47.1447
+      },
+      "children": [
+        {
+          "slug": "amarah",
+          "type": "city",
+          "name": {
+            "ar": "العمارة",
+            "en": "Amarah"
+          },
+          "center": {
+            "lat": 31.8356,
+            "lng": 47.1447
+          }
+        }
+      ]
+    },
+    {
+      "slug": "muthanna",
+      "type": "governorate",
+      "name": {
+        "ar": "المثنى",
+        "en": "Muthanna"
+      },
+      "center": {
+        "lat": 31.3099,
+        "lng": 45.2803
+      },
+      "children": [
+        {
+          "slug": "samawah",
+          "type": "city",
+          "name": {
+            "ar": "السماوة",
+            "en": "Samawah"
+          },
+          "center": {
+            "lat": 31.3099,
+            "lng": 45.2803
+          }
+        }
+      ]
+    },
+    {
+      "slug": "qadisiyyah",
+      "type": "governorate",
+      "name": {
+        "ar": "القادسية",
+        "en": "Al-Qadisiyyah"
+      },
+      "center": {
+        "lat": 31.9929,
+        "lng": 44.9255
+      },
+      "children": [
+        {
+          "slug": "diwaniyah",
+          "type": "city",
+          "name": {
+            "ar": "الديوانية",
+            "en": "Diwaniyah"
+          },
+          "center": {
+            "lat": 31.9929,
+            "lng": 44.9255
+          }
+        }
+      ]
+    }
+  ]
+}

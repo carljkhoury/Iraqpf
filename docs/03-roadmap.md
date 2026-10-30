@@ -10,12 +10,12 @@ Legend: ✅ done · 🔄 in progress · ⏳ waiting for founder input · ⬜ not
 
 - ✅ Discovery round 1: business, users, advertisers, monetization, market questions
 - ✅ Decisions log (`01-decisions-log.md`)
-- ⏳ Technology stack & architecture approval (`02-architecture.md`, Q-02)
-- ⏳ Brand name selection (`04-brand-name-options.md`, Q-01)
-- ⬜ Database design: full schema, relationships, indexes (`05-database.md`)
-- ⬜ Initial catalog: categories, attributes per category, amenities, title-deed types (for Iraq-team review)
-- ⬜ Location dataset: 18 governorates + Baghdad/Erbil/Basra districts & neighbourhoods (marked unreviewed)
-- ⬜ Design system: logo direction, colours, typography (Arabic + Latin), spacing, components (`06-design-system.md`)
+- ✅ Technology stack & architecture approved (`02-architecture.md`)
+- ✅ Brand name: **Mahalla (محلّة)**
+- ⏳ Database design: full schema, relationships, indexes (`05-database.md`): awaiting approval
+- ✅ Initial catalog drafted (`06-catalog.md`): Iraq-team review pending
+- ✅ Location dataset (`packages/db/seed/locations.iq.json`): 19 governorates, 37 cities, 98 neighbourhoods, 5 compounds, all marked unreviewed
+- ⏳ Design system v0.1 (`07-design-system.md`): awaiting approval
 - ⬜ Sitemap, user flows and permission matrix
 
 **Gate:** founder approves stack, schema, design system.
