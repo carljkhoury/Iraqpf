@@ -113,4 +113,6 @@ Last updated: 2026-10-30 (Discovery round 2 closed)
 | Q-04 | Digits in Arabic UI | **Western digits** (1,250,000) by default, switchable setting later | ✅ |
 | Q-05 | OTP cost | **Accepted** as the first paid service at launch; console OTP during development | ✅ |
 | Q-06 | Hosting | **Free tiers for staging, small VPS (~US$5–15/month) + Cloudflare for production** | ✅ |
+| Q-08 | Search engine visibility before launch | **Hidden** (robots.txt, `noindex` meta, `X-Robots-Tag`). Opened on launch day by setting `NEXT_PUBLIC_ALLOW_INDEXING=true` | ✅ |
+| Q-09 | Search URL filters | Purpose, category and location live in the path (SEO pages); other filters in the query string. Filter price presets per currency; default currency USD for buy, IQD for rent | ✅ |
 | Q-07 | Olk unit & title-deed list | Iraq team to confirm; does not block development | ❓ |

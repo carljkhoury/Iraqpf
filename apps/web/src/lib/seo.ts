@@ -29,3 +29,9 @@ export function alternates(locale: Locale, path: string): Metadata['alternates']
     },
   };
 }
+
+/**
+ * Search engines are blocked until launch. Set NEXT_PUBLIC_ALLOW_INDEXING=true
+ * in the production environment on launch day to open the site to Google.
+ */
+export const ALLOW_INDEXING = process.env.NEXT_PUBLIC_ALLOW_INDEXING === 'true';

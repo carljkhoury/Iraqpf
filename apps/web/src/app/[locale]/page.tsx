@@ -12,7 +12,8 @@ import { SectionHeader } from '@/components/section-header';
 import type { Locale } from '@mahalla/shared';
 import { Link } from '@/i18n/navigation';
 import { searchPath } from '@/lib/catalog';
-import { SAMPLE_AGENCIES, SAMPLE_LISTINGS, SAMPLE_POPULAR_AREAS } from '@/lib/sample-data';
+import { featuredListings, recentListings } from '@/lib/listings-repo';
+import { SAMPLE_AGENCIES, SAMPLE_POPULAR_AREAS } from '@/lib/sample-data';
 
 export default function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = use(params);
@@ -21,10 +22,8 @@ export default function HomePage({ params }: { params: Promise<{ locale: Locale 
   const th = useTranslations('hero');
   const tc = useTranslations('common');
 
-  const featured = SAMPLE_LISTINGS.filter((l) => l.featured).slice(0, 4);
-  const recent = SAMPLE_LISTINGS.filter((l) => !l.featured)
-    .sort((a, b) => b.postedAt.localeCompare(a.postedAt))
-    .slice(0, 4);
+  const featured = featuredListings(4);
+  const recent = recentListings(8);
   const quickSearches = SAMPLE_POPULAR_AREAS.slice(0, 5);
 
   return (

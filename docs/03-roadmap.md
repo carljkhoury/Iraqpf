@@ -27,8 +27,9 @@ Designed as **real, reusable components in code** (not throwaway mockups), shown
 - ✅ Project scaffolding: pnpm/Turborepo monorepo, TypeScript, ESLint, Prettier, GitHub Actions CI, next-intl (Arabic at `/`, English at `/en`), RTL foundation, self-hosted IBM Plex fonts
 - 🔄 Design system component library: tokens, Button, Badge, Chip, SegmentedControl, Field/Input/PhoneInput/Select, Logo, DisplayValue done; review page at `/design`. Dialogs, tabs, pagination and range inputs come with the pages that need them
 - ✅ Homepage: hero search (Arabic-aware location autocomplete, purpose tabs, property type), featured and recent listings, property types, popular areas, agencies, advertiser call to action, header with language switcher, mobile menu, footer
-- ⬜ Search results: grid/list, filter panel (dynamic per category), sorting, map view
-- 🔄 Property card: standard and featured variants done (list and compact variants come with search results)
+- ✅ Search results: grid and list views, filter panel that adapts to the property type (residential / commercial / land), price filter in IQD or USD (compared using the exchange rate), bedrooms, bathrooms, area, furnishing, title deed, sorting, pagination, breadcrumbs, empty state, mobile filter sheet with live result count. Every search state is a shareable URL (`/rent/apartments/baghdad/karrada?beds=2`)
+- ⬜ Map view for search results (next)
+- ✅ Property card: grid, featured and list variants
 - ⬜ Property details page
 - ⬜ Agency and agent profile pages
 - ⬜ User dashboard: favourites, recently viewed, settings
@@ -42,7 +43,9 @@ Also done in Phase 2 so far:
 - ✅ Shared formatters with unit tests: prices (IQD/USD, compact "250 مليون د.ع"), areas (m²/dunam/olk), Iraqi phone numbers (all common input formats, including Arabic-Indic digits), relative dates with correct Arabic plurals, Arabic search normalization
 - ✅ Bidi-safe display: only digits are isolated left-to-right, so Arabic units like `د.ع` and `م²` render correctly
 - ✅ Favourites saved in the browser (moves to user accounts in Phase 3)
-- ✅ 21 browser tests in Arabic and English, desktop and mobile
+- ✅ 37 browser tests and 24 unit tests in Arabic and English, desktop and mobile
+- ✅ 72 realistic sample listings across Baghdad, Erbil and Basra with real photos (Unsplash, free licence) and illustration fallback
+- ✅ Site hidden from search engines until launch (robots.txt, meta tag and HTTP header)
 - ✅ Pages not built yet show a localized "being built" page (not indexed)
 
 ## Phase 3: Core development

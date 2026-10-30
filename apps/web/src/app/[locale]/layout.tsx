@@ -18,7 +18,7 @@ import { SampleNotice } from '@/components/sample-notice';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { routing } from '@/i18n/routing';
-import { SITE_URL, alternates } from '@/lib/seo';
+import { ALLOW_INDEXING, SITE_URL, alternates } from '@/lib/seo';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -44,6 +44,7 @@ export async function generateMetadata({
     description: t('homeDescription'),
     applicationName: t('siteName'),
     alternates: alternates(locale, '/'),
+    robots: ALLOW_INDEXING ? undefined : { index: false, follow: false },
     openGraph: {
       siteName: t('siteName'),
       locale: locale === 'ar' ? 'ar_IQ' : 'en_GB',

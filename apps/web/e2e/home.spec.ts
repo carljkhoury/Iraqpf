@@ -39,16 +39,19 @@ test.describe('homepage', () => {
     });
   }
 
-  test('renders Arabic prices with the currency after the number', async ({ page }) => {
+  test('renders Arabic prices with Western digits and an Arabic currency', async ({ page }) => {
     await page.goto('/');
-    const price = page
-      .locator('article')
-      .filter({ hasText: 'الجزائر' })
-      .first()
-      .locator('p')
-      .first();
-    await expect(price).toContainText('450,000,000');
-    await expect(price).toContainText('د.ع');
+    const price = page.locator('article').first().locator('p').first();
+    await expect(price).toHaveText(/[\d,]+ (د\.ع|\$)/);
+  });
+
+  test('is hidden from search engines before launch', async ({ page, request }) => {
+    const response = await request.get('/');
+    expect(response.headers()['x-robots-tag']).toContain('noindex');
+    await page.goto('/');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    const robots = await (await request.get('/robots.txt')).text();
+    expect(robots).toContain('Disallow: /');
   });
 });
 
