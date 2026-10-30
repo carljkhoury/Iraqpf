@@ -11,6 +11,10 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
+    // Software WebGL so map tests run on machines without a GPU (CI).
+    launchOptions: {
+      args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
+    },
   },
   projects: [
     {

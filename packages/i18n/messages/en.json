@@ -261,7 +261,8 @@
       "residential": "Residential",
       "commercial": "Commercial",
       "land": "Land"
-    }
+    },
+    "map": "Map"
   },
   "property": {
     "share": "Share",
@@ -328,5 +329,13 @@
     "reportThanks": "Thank you. Our team will review this listing.",
     "reportSampleNote": "Sample listing: reports are not saved at this stage.",
     "similarTitle": "Similar properties"
+  },
+  "map": {
+    "region": "Property map",
+    "loading": "Loading map…",
+    "error": "The map couldn't load. Check your connection and try again.",
+    "approxNote": "Map locations are approximate to protect advertisers' privacy.",
+    "closePreview": "Close preview",
+    "areaLabel": "Approximate area of the property"
   }
 }

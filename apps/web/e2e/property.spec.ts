@@ -1,8 +1,14 @@
 import { expect, test } from '@playwright/test';
+import { firstHousePath, stubMapTiles } from './helpers';
 
-const PATH = '/property/48293-house-for-sale-iskan-erbil';
+let PATH = '';
 
 test.describe('property details', () => {
+  test.beforeEach(async ({ page }) => {
+    await stubMapTiles(page);
+    PATH ||= await firstHousePath(page);
+  });
+
   test('opens from a search result card', async ({ page }) => {
     await page.goto('/en/buy/houses');
     const first = page.locator('article').first();
@@ -16,15 +22,16 @@ test.describe('property details', () => {
   test('shows price, key facts, details and similar properties in Arabic', async ({ page }) => {
     await page.goto(PATH);
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('الإسكان');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('بيت');
     await expect(page.getByRole('heading', { name: 'تفاصيل العقار' })).toBeVisible();
     await expect(page.getByText('رقم الإعلان')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'عقارات مشابهة' })).toBeVisible();
   });
 
   test('old URLs redirect to the current slug; unknown IDs are 404', async ({ page }) => {
-    await page.goto('/en/property/48293-some-old-title');
-    await expect(page).toHaveURL(/\/en\/property\/48293-house-for-sale-iskan-erbil$/);
+    const id = PATH.match(/\/property\/(\d+)-/)![1];
+    await page.goto(`/en/property/${id}-some-old-title`);
+    await expect(page).toHaveURL(new RegExp(`/en${PATH}$`));
     const response = await page.goto('/property/999-nothing');
     expect(response?.status()).toBe(404);
   });
@@ -74,6 +81,14 @@ test.describe('property details', () => {
     await page.goto(PATH);
     await page.getByRole('button', { name: 'واتساب' }).last().click();
     await expect(page.getByRole('dialog', { name: 'إعلان تجريبي' })).toBeVisible();
+  });
+
+  test('shows the approximate area on a map, not an exact pin', async ({ page }) => {
+    await page.goto(`/en${PATH}`);
+    const map = page.getByRole('region', { name: 'Approximate area of the property' });
+    await map.scrollIntoViewIfNeeded();
+    await expect(map.locator('canvas')).toBeVisible();
+    await expect(page.locator('.maplibregl-marker')).toHaveCount(0);
   });
 
   test('report form requires a reason and confirms', async ({ page }) => {

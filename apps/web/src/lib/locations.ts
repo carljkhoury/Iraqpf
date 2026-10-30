@@ -7,6 +7,7 @@ interface SeedNode {
   slug: string;
   type: string;
   name: LocalizedText;
+  center?: { lat: number; lng: number };
   children?: SeedNode[];
 }
 
@@ -19,6 +20,8 @@ export interface LocationOption {
   parent: LocalizedText | null;
   /** Normalized Arabic + English names for matching. */
   searchKeys: string[];
+  /** Map centre [lng, lat]; neighbourhoods without one inherit their parent's. */
+  center: [number, number] | null;
 }
 
 function build(
@@ -26,10 +29,14 @@ function build(
   pathSegments: string[] = [],
   displayParent: LocalizedText | null = null,
   parentSlug?: string,
+  parentCenter: [number, number] | null = null,
 ): LocationOption[] {
   return nodes.flatMap((node) => {
     // A city that repeats its governorate (Baghdad inside Baghdad) is folded into it.
     const folded = node.type === 'city' && node.slug === parentSlug;
+    const center: [number, number] | null = node.center
+      ? [node.center.lng, node.center.lat]
+      : parentCenter;
     const segments = folded ? pathSegments : [...pathSegments, node.slug];
     const self: LocationOption[] = folded
       ? []
@@ -40,10 +47,11 @@ function build(
             name: node.name,
             parent: displayParent,
             searchKeys: [normalizeForSearch(node.name.ar), normalizeForSearch(node.name.en)],
+            center,
           },
         ];
     const childParent = folded ? displayParent : node.name;
-    return [...self, ...build(node.children ?? [], segments, childParent, node.slug)];
+    return [...self, ...build(node.children ?? [], segments, childParent, node.slug, center)];
   });
 }
 
@@ -75,4 +83,9 @@ export function searchLocations(query: string, limit = 8): LocationOption[] {
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((s) => s.option);
+}
+
+/** Zoom level that frames a location type on the map. */
+export function zoomFor(type: LocationOption['type']): number {
+  return type === 'governorate' ? 9 : type === 'city' ? 11 : 13;
 }

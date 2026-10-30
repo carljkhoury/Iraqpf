@@ -1,6 +1,6 @@
 import type { Locale } from '@mahalla/shared';
 import { Button, Container, cn } from '@mahalla/ui';
-import { LayoutGrid, List, SearchX } from 'lucide-react';
+import { LayoutGrid, List, Map as MapIcon, SearchX } from 'lucide-react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
@@ -11,7 +11,8 @@ import {
   type PurposeSlug,
   searchPath,
 } from '@/lib/catalog';
-import { PAGE_SIZE, searchListings } from '@/lib/listings-repo';
+import { PAGE_SIZE, searchAllListings, searchListings } from '@/lib/listings-repo';
+import { zoomFor } from '@/lib/locations';
 import type { LocationOption } from '@/lib/locations';
 import {
   type SearchState,
@@ -22,6 +23,7 @@ import {
 } from '@/lib/search-params';
 import { alternates } from '@/lib/seo';
 import { ListingRow } from '../listing-row';
+import { SearchMapView } from '../map/search-map-view';
 import { PropertyCard } from '../property-card';
 import { Breadcrumbs, type Crumb } from './breadcrumbs';
 import { FilterPanel } from './filter-panel';
@@ -84,7 +86,9 @@ export async function SearchResultsPage({
   const { locale, category, location: segments } = await props.params;
   const { categoryKey, location } = resolve(category, segments);
   const filters = parseFilters(await props.searchParams, purpose);
-  const result = searchListings({ purpose, category: categoryKey, location, filters });
+  const query = { purpose, category: categoryKey, location, filters };
+  const result = searchListings(query);
+  const isMap = filters.view === 'map';
 
   const t = await getTranslations({ locale, namespace: 'search' });
   const tn = await getTranslations({ locale, namespace: 'nav' });
@@ -99,8 +103,8 @@ export async function SearchResultsPage({
     filters,
   };
   const hrefFor = (page: number) => searchHref({ ...state, filters: { ...filters, page } });
-  const viewHref = (view: 'grid' | 'list') =>
-    searchHref({ ...state, filters: { ...filters, view } });
+  const viewHref = (view: 'grid' | 'list' | 'map') =>
+    searchHref({ ...state, filters: { ...filters, view, page: 1 } });
 
   const crumbs: Crumb[] = [
     { label: t('home'), href: '/' },
@@ -143,7 +147,7 @@ export async function SearchResultsPage({
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <MobileFilters state={state} location={location ?? null} total={result.total} />
-              {result.total > 0 && (
+              {result.total > 0 && !isMap && (
                 <p className="hidden text-sm text-sand-500 sm:block">
                   {t('summary', { from, to, total: result.total })}
                 </p>
@@ -152,12 +156,12 @@ export async function SearchResultsPage({
             <div className="flex items-center gap-2">
               <SortSelect state={state} />
               <div
-                className="hidden rounded-md border border-sand-200 bg-white p-0.5 sm:flex"
+                className="flex rounded-md border border-sand-200 bg-white p-0.5"
                 role="group"
                 aria-label={t('view')}
               >
-                {(['grid', 'list'] as const).map((view) => {
-                  const Icon = view === 'grid' ? LayoutGrid : List;
+                {(['grid', 'list', 'map'] as const).map((view) => {
+                  const Icon = view === 'grid' ? LayoutGrid : view === 'list' ? List : MapIcon;
                   const active = filters.view === view;
                   return (
                     <Link
@@ -168,6 +172,7 @@ export async function SearchResultsPage({
                       aria-label={t(view)}
                       className={cn(
                         'grid size-8 place-items-center rounded-[8px]',
+                        view === 'list' && 'max-sm:hidden',
                         active ? 'bg-lapis-50 text-lapis-700' : 'text-sand-500 hover:text-sand-900',
                       )}
                     >
@@ -179,7 +184,13 @@ export async function SearchResultsPage({
             </div>
           </div>
 
-          {result.total === 0 ? (
+          {isMap ? (
+            <SearchMapView
+              listings={searchAllListings(query)}
+              fallbackCenter={location?.center ?? undefined}
+              fallbackZoom={location ? zoomFor(location.type) : undefined}
+            />
+          ) : result.total === 0 ? (
             <div className="grid place-items-center rounded-lg border border-dashed border-sand-300 bg-white px-6 py-16 text-center">
               <SearchX className="size-10 text-sand-300" aria-hidden />
               <h2 className="mt-4 text-lg font-semibold">{t('emptyTitle')}</h2>
@@ -202,7 +213,9 @@ export async function SearchResultsPage({
             </div>
           )}
 
-          <Pagination page={result.page} pageCount={result.pageCount} hrefFor={hrefFor} />
+          {!isMap && (
+            <Pagination page={result.page} pageCount={result.pageCount} hrefFor={hrefFor} />
+          )}
         </section>
       </div>
     </Container>

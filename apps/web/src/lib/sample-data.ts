@@ -51,6 +51,11 @@ export interface ListingCardData {
   /** 0 = ground floor. Apartments and offices. */
   floor?: number;
   amenities: AmenityKey[];
+  /**
+   * Public map point. Deliberately offset from the real position (decision E-09):
+   * the exact pin is never sent to browsers.
+   */
+  point: { lat: number; lng: number };
   /** Location path, e.g. `baghdad/karrada` (matches `lib/locations.ts`). */
   locationPath: string;
   location: { name: LocalizedText; city: LocalizedText };
@@ -136,6 +141,9 @@ interface Area {
   slug: string;
   name: LocalizedText;
   city: CityKey;
+  /** Approximate neighbourhood centre (unreviewed, for the sample map only). */
+  lat: number;
+  lng: number;
   tier: number;
   weight: number;
 }
@@ -145,6 +153,8 @@ const AREAS: Area[] = [
     slug: 'mansour',
     name: { ar: 'المنصور', en: 'Mansour' },
     city: 'baghdad',
+    lat: 33.3125,
+    lng: 44.342,
     tier: 1.6,
     weight: 5,
   },
@@ -152,6 +162,8 @@ const AREAS: Area[] = [
     slug: 'karrada',
     name: { ar: 'الكرادة', en: 'Karrada' },
     city: 'baghdad',
+    lat: 33.303,
+    lng: 44.423,
     tier: 1.3,
     weight: 5,
   },
@@ -159,14 +171,26 @@ const AREAS: Area[] = [
     slug: 'jadriya',
     name: { ar: 'الجادرية', en: 'Jadriya' },
     city: 'baghdad',
+    lat: 33.276,
+    lng: 44.388,
     tier: 1.8,
     weight: 3,
   },
-  { slug: 'zayouna', name: { ar: 'زيونة', en: 'Zayouna' }, city: 'baghdad', tier: 1.4, weight: 4 },
+  {
+    slug: 'zayouna',
+    name: { ar: 'زيونة', en: 'Zayouna' },
+    city: 'baghdad',
+    lat: 33.327,
+    lng: 44.456,
+    tier: 1.4,
+    weight: 4,
+  },
   {
     slug: 'yarmouk',
     name: { ar: 'اليرموك', en: 'Yarmouk' },
     city: 'baghdad',
+    lat: 33.298,
+    lng: 44.329,
     tier: 1.4,
     weight: 4,
   },
@@ -174,14 +198,26 @@ const AREAS: Area[] = [
     slug: 'harthiya',
     name: { ar: 'الحارثية', en: 'Harthiya' },
     city: 'baghdad',
+    lat: 33.316,
+    lng: 44.36,
     tier: 1.5,
     weight: 2,
   },
-  { slug: 'arasat', name: { ar: 'العرصات', en: 'Arasat' }, city: 'baghdad', tier: 1.5, weight: 2 },
+  {
+    slug: 'arasat',
+    name: { ar: 'العرصات', en: 'Arasat' },
+    city: 'baghdad',
+    lat: 33.299,
+    lng: 44.412,
+    tier: 1.5,
+    weight: 2,
+  },
   {
     slug: 'adhamiya',
     name: { ar: 'الأعظمية', en: 'Adhamiya' },
     city: 'baghdad',
+    lat: 33.37,
+    lng: 44.37,
     tier: 1.1,
     weight: 3,
   },
@@ -189,6 +225,8 @@ const AREAS: Area[] = [
     slug: 'palestine-street',
     name: { ar: 'شارع فلسطين', en: 'Palestine Street' },
     city: 'baghdad',
+    lat: 33.342,
+    lng: 44.436,
     tier: 1.2,
     weight: 3,
   },
@@ -196,6 +234,8 @@ const AREAS: Area[] = [
     slug: 'ghazaliya',
     name: { ar: 'الغزالية', en: 'Ghazaliya' },
     city: 'baghdad',
+    lat: 33.333,
+    lng: 44.27,
     tier: 0.9,
     weight: 3,
   },
@@ -203,14 +243,26 @@ const AREAS: Area[] = [
     slug: 'saydiya',
     name: { ar: 'السيدية', en: 'Saydiya' },
     city: 'baghdad',
+    lat: 33.255,
+    lng: 44.354,
     tier: 0.85,
     weight: 2,
   },
-  { slug: 'dora', name: { ar: 'الدورة', en: 'Dora' }, city: 'baghdad', tier: 0.75, weight: 2 },
+  {
+    slug: 'dora',
+    name: { ar: 'الدورة', en: 'Dora' },
+    city: 'baghdad',
+    lat: 33.245,
+    lng: 44.4,
+    tier: 0.75,
+    weight: 2,
+  },
   {
     slug: 'baladiyat',
     name: { ar: 'البلديات', en: 'Al-Baladiyat' },
     city: 'baghdad',
+    lat: 33.338,
+    lng: 44.481,
     tier: 0.9,
     weight: 2,
   },
@@ -218,14 +270,26 @@ const AREAS: Area[] = [
     slug: 'kadhimiya',
     name: { ar: 'الكاظمية', en: 'Kadhimiya' },
     city: 'baghdad',
+    lat: 33.379,
+    lng: 44.341,
     tier: 1.0,
     weight: 2,
   },
-  { slug: 'ankawa', name: { ar: 'عنكاوة', en: 'Ankawa' }, city: 'erbil', tier: 1.2, weight: 4 },
+  {
+    slug: 'ankawa',
+    name: { ar: 'عنكاوة', en: 'Ankawa' },
+    city: 'erbil',
+    lat: 36.228,
+    lng: 43.993,
+    tier: 1.2,
+    weight: 4,
+  },
   {
     slug: 'dream-city',
     name: { ar: 'دريم سيتي', en: 'Dream City' },
     city: 'erbil',
+    lat: 36.203,
+    lng: 43.969,
     tier: 1.5,
     weight: 3,
   },
@@ -233,6 +297,8 @@ const AREAS: Area[] = [
     slug: 'english-village',
     name: { ar: 'القرية الإنكليزية', en: 'English Village' },
     city: 'erbil',
+    lat: 36.211,
+    lng: 43.981,
     tier: 1.6,
     weight: 2,
   },
@@ -240,16 +306,44 @@ const AREAS: Area[] = [
     slug: 'italian-village',
     name: { ar: 'القرية الإيطالية', en: 'Italian Village' },
     city: 'erbil',
+    lat: 36.23,
+    lng: 44.04,
     tier: 1.5,
     weight: 2,
   },
-  { slug: 'gulan', name: { ar: 'كولان', en: 'Gulan' }, city: 'erbil', tier: 1.2, weight: 2 },
-  { slug: 'iskan', name: { ar: 'الإسكان', en: 'Iskan' }, city: 'erbil', tier: 0.9, weight: 2 },
-  { slug: 'jazair', name: { ar: 'الجزائر', en: 'Al-Jazair' }, city: 'basra', tier: 1.3, weight: 3 },
+  {
+    slug: 'gulan',
+    name: { ar: 'كولان', en: 'Gulan' },
+    city: 'erbil',
+    lat: 36.201,
+    lng: 43.992,
+    tier: 1.2,
+    weight: 2,
+  },
+  {
+    slug: 'iskan',
+    name: { ar: 'الإسكان', en: 'Iskan' },
+    city: 'erbil',
+    lat: 36.18,
+    lng: 44.015,
+    tier: 0.9,
+    weight: 2,
+  },
+  {
+    slug: 'jazair',
+    name: { ar: 'الجزائر', en: 'Al-Jazair' },
+    city: 'basra',
+    lat: 30.5,
+    lng: 47.81,
+    tier: 1.3,
+    weight: 3,
+  },
   {
     slug: 'baradiya',
     name: { ar: 'البراضعية', en: 'Al-Baradiya' },
     city: 'basra',
+    lat: 30.49,
+    lng: 47.825,
     tier: 1.1,
     weight: 3,
   },
@@ -257,6 +351,8 @@ const AREAS: Area[] = [
     slug: 'tuwaisa',
     name: { ar: 'الطويسة', en: 'Al-Tuwaisa' },
     city: 'basra',
+    lat: 30.515,
+    lng: 47.805,
     tier: 1.0,
     weight: 2,
   },
@@ -264,10 +360,20 @@ const AREAS: Area[] = [
     slug: 'muhandiseen',
     name: { ar: 'حي المهندسين', en: 'Hay al-Muhandiseen' },
     city: 'basra',
+    lat: 30.53,
+    lng: 47.77,
     tier: 1.2,
     weight: 2,
   },
-  { slug: 'ashar', name: { ar: 'العشار', en: 'Al-Ashar' }, city: 'basra', tier: 1.0, weight: 2 },
+  {
+    slug: 'ashar',
+    name: { ar: 'العشار', en: 'Al-Ashar' },
+    city: 'basra',
+    lat: 30.518,
+    lng: 47.84,
+    tier: 1.0,
+    weight: 2,
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -703,6 +809,15 @@ function pickCurrency(city: CityKey, purpose: Purpose, category: CategoryKey): C
 // Start of today (UTC), so all pages in one build agree on listing ages.
 const TODAY = Math.floor(Date.now() / 86_400_000) * 86_400_000 + 9 * 3_600_000;
 
+/** Random point 150–900 m from a centre. */
+function jitter(lat: number, lng: number): { lat: number; lng: number } {
+  const distance = between(150, 900);
+  const angle = rand() * 2 * Math.PI;
+  const dLat = (distance * Math.cos(angle)) / 111_320;
+  const dLng = (distance * Math.sin(angle)) / (111_320 * Math.cos((lat * Math.PI) / 180));
+  return { lat: +(lat + dLat).toFixed(5), lng: +(lng + dLng).toFixed(5) };
+}
+
 function daysAgo(days: number): string {
   return new Date(TODAY - days * 86_400_000).toISOString();
 }
@@ -830,6 +945,7 @@ function generate(count: number): ListingCardData[] {
       floor: category === 'apartment' || category === 'office' ? int(0, 9) : undefined,
       amenities,
       locationPath: `${area.city}/${area.slug}`,
+      point: jitter(area.lat, area.lng),
       location: { name: area.name, city: CITY[area.city] },
       photos,
       fallbackImage: rule.fallback,

@@ -26,15 +26,10 @@ function toUsd(amount: number, currency: Currency): number {
 }
 
 /**
- * Searches the sample listings. Phase 3 replaces this with the `search` API
- * module (PostgreSQL); the query and result shapes stay the same.
+ * Filters and sorts the sample listings. Phase 3 replaces this with the
+ * `search` API module (PostgreSQL); the query and result shapes stay the same.
  */
-export function searchListings({
-  purpose,
-  category,
-  location,
-  filters,
-}: SearchQuery): SearchResult {
+function matchListings({ purpose, category, location, filters }: SearchQuery): ListingCardData[] {
   const members = GROUP_MEMBERS[category as CategoryGroupKey];
   const categories = members === undefined ? [category as CategoryKey] : members;
   const purposes = purpose === 'buy' ? ['sale'] : ['rent', 'key_money'];
@@ -80,14 +75,24 @@ export function searchListings({
     }
   });
 
+  return sorted;
+}
+
+export function searchListings(query: SearchQuery): SearchResult {
+  const sorted = matchListings(query);
   const pageCount = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
-  const page = Math.min(filters.page, pageCount);
+  const page = Math.min(query.filters.page, pageCount);
   return {
     items: sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
     total: sorted.length,
     page,
     pageCount,
   };
+}
+
+/** Every match (no pagination) for the map view. The API caps this at 500 in Phase 3. */
+export function searchAllListings(query: SearchQuery): ListingCardData[] {
+  return matchListings(query).slice(0, 500);
 }
 
 export function featuredListings(limit: number): ListingCardData[] {

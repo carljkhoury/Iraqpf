@@ -28,6 +28,7 @@ import {
 import { useLocale, useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
+import { AreaMapLoader } from '../map/area-map-loader';
 import { searchPath } from '@/lib/catalog';
 import type { AmenityKey, ListingCardData } from '@/lib/sample-data';
 
@@ -188,26 +189,29 @@ export function LocationCard({ listing }: { listing: ListingCardData }) {
   const locale = useLocale() as Locale;
   const purpose = listing.purpose === 'sale' ? 'buy' : 'rent';
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-sand-200 bg-white p-4">
-      <div className="flex items-start gap-3">
-        <span className="grid size-10 shrink-0 place-items-center rounded-full bg-lapis-50 text-lapis-600">
-          <MapPin className="size-5" aria-hidden />
-        </span>
-        <div>
-          <p className="font-semibold text-sand-900">
-            {listing.location.name[locale]}
-            {locale === 'ar' ? '، ' : ', '}
-            {listing.location.city[locale]}
-          </p>
-          <p className="mt-0.5 max-w-md text-sm text-sand-500">{t('locationApprox')}</p>
+    <div className="grid gap-3">
+      <AreaMapLoader lat={listing.point.lat} lng={listing.point.lng} />
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-sand-200 bg-white p-4">
+        <div className="flex items-start gap-3">
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-lapis-50 text-lapis-600">
+            <MapPin className="size-5" aria-hidden />
+          </span>
+          <div>
+            <p className="font-semibold text-sand-900">
+              {listing.location.name[locale]}
+              {locale === 'ar' ? '، ' : ', '}
+              {listing.location.city[locale]}
+            </p>
+            <p className="mt-0.5 max-w-md text-sm text-sand-500">{t('locationApprox')}</p>
+          </div>
         </div>
+        <Link
+          href={searchPath(purpose, 'properties', listing.locationPath)}
+          className="text-sm font-semibold text-lapis-600 hover:text-lapis-700"
+        >
+          {t('moreInArea', { area: listing.location.name[locale] })}
+        </Link>
       </div>
-      <Link
-        href={searchPath(purpose, 'properties', listing.locationPath)}
-        className="text-sm font-semibold text-lapis-600 hover:text-lapis-700"
-      >
-        {t('moreInArea', { area: listing.location.name[locale] })}
-      </Link>
     </div>
   );
 }

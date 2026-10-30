@@ -14,7 +14,7 @@ import type { DeedKey, FurnishingKey } from './sample-data';
 
 export type SortKey = 'recommended' | 'newest' | 'price_asc' | 'price_desc';
 export const SORT_KEYS: SortKey[] = ['recommended', 'newest', 'price_asc', 'price_desc'];
-export type ViewKey = 'grid' | 'list';
+export type ViewKey = 'grid' | 'list' | 'map';
 
 export const LAND_TYPES: CategoryKey[] = [
   'residential_land',
@@ -113,7 +113,7 @@ export function parseFilters(params: RawParams, purpose: PurposeSlug): SearchFil
       ? deed
       : undefined,
     sort: sort && SORT_KEYS.includes(sort) ? sort : 'recommended',
-    view: str(params.view) === 'list' ? 'list' : 'grid',
+    view: str(params.view) === 'list' ? 'list' : str(params.view) === 'map' ? 'map' : 'grid',
     page: Math.max(1, Math.floor(num(params.page) ?? 1)),
   };
 }
