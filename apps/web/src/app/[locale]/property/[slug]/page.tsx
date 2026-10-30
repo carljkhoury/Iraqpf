@@ -23,6 +23,7 @@ import {
 } from '@/components/property/listing-details';
 import { ReportDialog } from '@/components/property/report-dialog';
 import { ShareButton } from '@/components/property/share-button';
+import { TrackView } from '@/components/property/track-view';
 import { Breadcrumbs } from '@/components/search/breadcrumbs';
 import { getPathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -216,6 +217,7 @@ export default async function PropertyPage({ params }: Props) {
         )}
       </Container>
       <MobileContactBar listing={listing} pageUrl={pageUrl} />
+      <TrackView listingId={listing.id} />
     </>
   );
 }

@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
+import { AccountButton } from './account/account-button';
 import { LanguageSwitcher } from './language-switcher';
 import { NAV_LINKS } from './nav-links';
 
@@ -59,11 +60,7 @@ export function MobileNav() {
                 {t('listProperty')}
               </Link>
             </Button>
-            <Button asChild variant="secondary" size="lg">
-              <Link href="/login" onClick={close}>
-                {t('login')}
-              </Link>
-            </Button>
+            <AccountButton className="h-12 border border-lapis-200" onNavigate={close} />
             <LanguageSwitcher className="justify-center" />
           </div>
         </Dialog.Content>

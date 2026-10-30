@@ -38,8 +38,10 @@ Designed as **real, reusable components in code** (not throwaway mockups), shown
 - ✅ Agency profile pages (`/agencies/{slug}`): header with logo, verified badge, established year, stats, about, listings with For sale / For rent tabs and pagination, team members with their own call/WhatsApp, office address, hours, languages and office map, structured data for Google
 - ✅ Listings show the agent handling them on the property page
 - ⬜ Individual agent pages (planned with advertiser accounts in Phase 3)
-- ⬜ User dashboard: favourites, recently viewed, settings
-- ⬜ Advertiser dashboard: listings, add/edit listing wizard, stats
+- ✅ Sign-in screens: phone number (any common format, Arabic digits accepted), WhatsApp/SMS choice, 6-digit code with resend timer, name for new accounts, return to the page you came from. **Demo mode:** code 123456, account saved on this device (`lib/demo-session.ts`); real OTP in Phase 3
+- ✅ User dashboard: overview (stats, your listings, saved), favourites, recently viewed, settings (profile, WhatsApp number, account type, notifications, language, delete account)
+- ✅ Advertiser dashboard: my listings with status filters (active, pending review, draft, expired, paused, rejected with reason, sold), actions (pause, resume, renew 60 days, mark sold/rented, submit, delete with confirmation), per-listing statistics (views, number reveals, WhatsApp clicks, saves, contact rate, views-per-day chart with table view)
+- ⬜ "List your property" wizard and listing editing (next)
 - ⬜ Admin dashboard layout & key screens
 - ⬜ Arabic and English review pass on every screen
 
@@ -49,7 +51,7 @@ Also done in Phase 2 so far:
 - ✅ Shared formatters with unit tests: prices (IQD/USD, compact "250 مليون د.ع"), areas (m²/dunam/olk), Iraqi phone numbers (all common input formats, including Arabic-Indic digits), relative dates with correct Arabic plurals, Arabic search normalization
 - ✅ Bidi-safe display: only digits are isolated left-to-right, so Arabic units like `د.ع` and `م²` render correctly
 - ✅ Favourites saved in the browser (moves to user accounts in Phase 3)
-- ✅ 70 browser tests and 24 unit tests in Arabic and English, desktop and mobile
+- ✅ 90 browser tests and 24 unit tests in Arabic and English, desktop and mobile
 - ✅ 72 realistic sample listings across Baghdad, Erbil and Basra with real photos (Unsplash, free licence) and illustration fallback
 - ✅ Site hidden from search engines until launch (robots.txt, meta tag and HTTP header)
 - ✅ Pages not built yet show a localized "being built" page (not indexed)

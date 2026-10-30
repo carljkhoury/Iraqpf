@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 import { Link } from '@/i18n/navigation';
+import { AccountButton } from './account/account-button';
 import { LanguageSwitcher } from './language-switcher';
 import { MobileNav } from './mobile-nav';
 import { NAV_LINKS } from './nav-links';
@@ -38,9 +39,7 @@ export function SiteHeader() {
           <Suspense>
             <LanguageSwitcher className="hidden sm:inline-flex" />
           </Suspense>
-          <Button asChild variant="ghost" className="hidden lg:inline-flex">
-            <Link href="/login">{t('login')}</Link>
-          </Button>
+          <AccountButton className="hidden lg:inline-flex" />
           <Button asChild size="sm" className="sm:h-11 sm:px-4">
             <Link href="/list-property">
               <Plus className="size-4" aria-hidden />

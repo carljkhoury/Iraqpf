@@ -3,57 +3,73 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
 /**
- * Favourites kept in the browser during Phase 2. In Phase 3 logged-in users'
- * favourites move to the API (`favourites` table) and this hook syncs with it.
+ * A list of listing IDs kept in the browser during Phase 2. In Phase 3,
+ * logged-in users' favourites and recently viewed listings move to the API
+ * (`favourites` and `recently_viewed` tables) and these hooks sync with it.
  */
-const KEY = 'mahalla:favourites';
-const listeners = new Set<() => void>();
-let cache: number[] | null = null;
+function createIdStore(key: string, max: number) {
+  const listeners = new Set<() => void>();
+  let cache: number[] | null = null;
 
-function read(): number[] {
-  if (cache) return cache;
-  try {
-    const parsed: unknown = JSON.parse(window.localStorage.getItem(KEY) ?? '[]');
-    cache = Array.isArray(parsed) ? parsed.filter((n): n is number => typeof n === 'number') : [];
-  } catch {
-    cache = [];
-  }
-  return cache;
-}
-
-function write(ids: number[]) {
-  cache = ids;
-  try {
-    window.localStorage.setItem(KEY, JSON.stringify(ids));
-  } catch {
-    // Storage can be unavailable (private mode); favourites still work for this visit.
-  }
-  listeners.forEach((l) => l());
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  const onStorage = (e: StorageEvent) => {
-    if (e.key === KEY) {
-      cache = null;
-      listener();
+  const read = (): number[] => {
+    if (cache) return cache;
+    try {
+      const parsed: unknown = JSON.parse(window.localStorage.getItem(key) ?? '[]');
+      cache = Array.isArray(parsed) ? parsed.filter((n): n is number => typeof n === 'number') : [];
+    } catch {
+      cache = [];
     }
+    return cache;
   };
-  window.addEventListener('storage', onStorage);
-  return () => {
-    listeners.delete(listener);
-    window.removeEventListener('storage', onStorage);
+
+  const write = (ids: number[]) => {
+    cache = ids.slice(0, max);
+    try {
+      window.localStorage.setItem(key, JSON.stringify(cache));
+    } catch {
+      // Storage can be unavailable (private mode); the list still works for this visit.
+    }
+    listeners.forEach((l) => l());
   };
+
+  const subscribe = (listener: () => void) => {
+    listeners.add(listener);
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === key) {
+        cache = null;
+        listener();
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => {
+      listeners.delete(listener);
+      window.removeEventListener('storage', onStorage);
+    };
+  };
+
+  return { read, write, subscribe };
 }
 
 const EMPTY: number[] = [];
+const favourites = createIdStore('mahalla:favourites', 200);
+const recent = createIdStore('mahalla:recently-viewed', 30);
 
 export function useFavourites() {
-  const ids = useSyncExternalStore(subscribe, read, () => EMPTY);
+  const ids = useSyncExternalStore(favourites.subscribe, favourites.read, () => EMPTY);
   const isFavourite = useCallback((id: number) => ids.includes(id), [ids]);
   const toggle = useCallback(
-    (id: number) => write(ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]),
+    (id: number) => favourites.write(ids.includes(id) ? ids.filter((x) => x !== id) : [id, ...ids]),
     [ids],
   );
   return { ids, isFavourite, toggle };
+}
+
+export function useRecentlyViewed() {
+  const ids = useSyncExternalStore(recent.subscribe, recent.read, () => EMPTY);
+  const record = useCallback(
+    (id: number) => recent.write([id, ...recent.read().filter((x) => x !== id)]),
+    [],
+  );
+  const clear = useCallback(() => recent.write([]), []);
+  return { ids, record, clear };
 }
