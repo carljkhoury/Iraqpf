@@ -17,6 +17,19 @@ import { USD_TO_IQD } from './exchange';
 
 export type DeedKey = 'tabu_sirf' | 'agricultural' | 'musha' | 'investment' | 'contract';
 export type FurnishingKey = 'furnished' | 'semi_furnished' | 'unfurnished';
+export type AmenityKey =
+  | 'generator'
+  | 'dedicated_power'
+  | 'water_tank'
+  | 'garage'
+  | 'garden'
+  | 'fitted_kitchen'
+  | 'central_ac'
+  | 'solar'
+  | 'elevator'
+  | 'security'
+  | 'parking'
+  | 'main_road';
 
 export interface ListingCardData {
   id: number;
@@ -33,6 +46,11 @@ export interface ListingCardData {
   bathrooms?: number;
   areaM2: number;
   areaUnit: AreaUnit;
+  /** Land area for houses, villas and buildings. */
+  plotM2?: number;
+  /** 0 = ground floor. Apartments and offices. */
+  floor?: number;
+  amenities: AmenityKey[];
   /** Location path, e.g. `baghdad/karrada` (matches `lib/locations.ts`). */
   locationPath: string;
   location: { name: LocalizedText; city: LocalizedText };
@@ -47,6 +65,8 @@ export interface ListingCardData {
     initial: LocalizedText;
     kind: 'agency' | 'owner';
     slug?: string;
+    /** E.164. Sample numbers only; calls are blocked while SAMPLE_MODE is on. */
+    phone: string;
   };
   postedAt: string;
 }
@@ -60,6 +80,7 @@ export interface AgencyCardData {
   listingCount: number;
   verified: boolean;
   color: string;
+  phone: string;
 }
 
 export interface PopularArea {
@@ -261,6 +282,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'baghdad',
     verified: true,
     color: '#22489A',
+    phone: '+9647700000001',
   },
   {
     slug: 'dar-al-salam-real-estate',
@@ -270,6 +292,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'baghdad',
     verified: true,
     color: '#8F6814',
+    phone: '+9647800000002',
   },
   {
     slug: 'rusafa-realty',
@@ -279,6 +302,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'baghdad',
     verified: false,
     color: '#45413B',
+    phone: '+9647500000003',
   },
   {
     slug: 'citadel-homes-erbil',
@@ -288,6 +312,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'erbil',
     verified: true,
     color: '#1C3A7D',
+    phone: '+9647500000004',
   },
   {
     slug: 'shatt-al-arab-realty',
@@ -297,6 +322,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'basra',
     verified: true,
     color: '#1E8E5A',
+    phone: '+9647800000005',
   },
   {
     slug: 'al-fayhaa-real-estate',
@@ -306,6 +332,7 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     cityKey: 'basra',
     verified: false,
     color: '#B7791F',
+    phone: '+9647700000006',
   },
 ];
 
@@ -313,6 +340,7 @@ const OWNER: ListingCardData['advertiser'] = {
   name: { ar: 'المالك', en: 'Owner' },
   initial: { ar: 'م', en: 'O' },
   kind: 'owner',
+  phone: '+9647900000009',
 };
 
 // ---------------------------------------------------------------------------
@@ -609,17 +637,45 @@ const ADJECTIVES: { m: string; f: string; en: string; for: 'built' | 'land' | 'a
   { m: 'ركن', f: 'ركن', en: 'Corner', for: 'land' },
 ];
 
-const FEATURES: LocalizedText[] = [
-  { ar: 'مولدة أهلية', en: 'neighbourhood generator' },
-  { ar: 'خط ذهبي', en: 'dedicated power line' },
-  { ar: 'خزان ماء', en: 'water tank' },
-  { ar: 'كراج', en: 'garage' },
-  { ar: 'حديقة', en: 'garden' },
-  { ar: 'مطبخ مجهز', en: 'fitted kitchen' },
-  { ar: 'تبريد مركزي', en: 'central A/C' },
-  { ar: 'منظومة طاقة شمسية', en: 'solar power system' },
-  { ar: 'قريب من شارع رئيسي', en: 'close to a main road' },
-];
+const AMENITY_TEXT: Record<AmenityKey, LocalizedText> = {
+  generator: { ar: 'مولدة أهلية', en: 'neighbourhood generator' },
+  dedicated_power: { ar: 'خط ذهبي', en: 'dedicated power line' },
+  water_tank: { ar: 'خزان ماء', en: 'water tank' },
+  garage: { ar: 'كراج', en: 'garage' },
+  garden: { ar: 'حديقة', en: 'garden' },
+  fitted_kitchen: { ar: 'مطبخ مجهز', en: 'fitted kitchen' },
+  central_ac: { ar: 'تبريد مركزي', en: 'central A/C' },
+  solar: { ar: 'منظومة طاقة شمسية', en: 'solar power system' },
+  elevator: { ar: 'مصعد', en: 'elevator' },
+  security: { ar: 'حراسة', en: 'security guard' },
+  parking: { ar: 'موقف سيارات', en: 'parking' },
+  main_road: { ar: 'قريب من شارع رئيسي', en: 'close to a main road' },
+};
+
+const AMENITIES_BY_KIND: Record<'home' | 'apartment' | 'commercial', AmenityKey[]> = {
+  home: [
+    'generator',
+    'dedicated_power',
+    'water_tank',
+    'garage',
+    'garden',
+    'fitted_kitchen',
+    'central_ac',
+    'solar',
+    'main_road',
+  ],
+  apartment: [
+    'generator',
+    'dedicated_power',
+    'water_tank',
+    'fitted_kitchen',
+    'central_ac',
+    'elevator',
+    'security',
+    'parking',
+  ],
+  commercial: ['generator', 'dedicated_power', 'parking', 'security', 'main_road', 'central_ac'],
+};
 
 // ---------------------------------------------------------------------------
 // Generation
@@ -704,7 +760,13 @@ function generate(count: number): ListingCardData[] {
     const byOwner = rule.residential && chance(0.3);
     const agency = byOwner ? null : pick(agencyPool);
     const advertiser: ListingCardData['advertiser'] = agency
-      ? { name: agency.name, initial: agency.initial, kind: 'agency', slug: agency.slug }
+      ? {
+          name: agency.name,
+          initial: agency.initial,
+          kind: 'agency',
+          slug: agency.slug,
+          phone: agency.phone,
+        }
       : OWNER;
 
     const isLand = rule.interiors.length === 0;
@@ -717,7 +779,15 @@ function generate(count: number): ListingCardData[] {
       en: `${adjective.en} ${name.en} in ${area.name.en}`,
     };
 
-    const features = isLand ? [] : sample(FEATURES, 3);
+    const amenityPool = isLand
+      ? []
+      : rule.residential
+        ? category === 'apartment' || category === 'residential_building'
+          ? AMENITIES_BY_KIND.apartment
+          : AMENITIES_BY_KIND.home
+        : AMENITIES_BY_KIND.commercial;
+    const amenities = sample(amenityPool, int(3, Math.min(6, amenityPool.length || 3)));
+    const features = amenities.slice(0, 3).map((key) => AMENITY_TEXT[key]);
     const description: LocalizedText = {
       ar: [
         `${title.ar}، ${CITY[area.city].ar}.`,
@@ -754,6 +824,11 @@ function generate(count: number): ListingCardData[] {
       bathrooms,
       areaM2,
       areaUnit: isDunam ? 'dunam' : 'm2',
+      plotM2: rule.plot
+        ? Math.max(areaM2 * 0.6, Math.round(between(...rule.plot) / 10) * 10)
+        : undefined,
+      floor: category === 'apartment' || category === 'office' ? int(0, 9) : undefined,
+      amenities,
       locationPath: `${area.city}/${area.slug}`,
       location: { name: area.name, city: CITY[area.city] },
       photos,

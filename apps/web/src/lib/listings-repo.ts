@@ -100,3 +100,22 @@ export function recentListings(limit: number): ListingCardData[] {
     .sort((a, b) => b.postedAt.localeCompare(a.postedAt))
     .slice(0, limit);
 }
+
+export function getListing(id: number): ListingCardData | undefined {
+  return SAMPLE_LISTINGS.find((l) => l.id === id);
+}
+
+/** Same type and purpose nearby first, then same purpose in the same city. */
+export function similarListings(listing: ListingCardData, limit: number): ListingCardData[] {
+  const city = listing.locationPath.split('/')[0];
+  const score = (l: ListingCardData) =>
+    (l.category === listing.category ? 4 : 0) +
+    (l.locationPath === listing.locationPath ? 2 : 0) +
+    (l.locationPath.startsWith(`${city}/`) ? 1 : 0);
+  return SAMPLE_LISTINGS.filter((l) => l.id !== listing.id && l.purpose === listing.purpose)
+    .map((l) => ({ l, s: score(l) }))
+    .filter(({ s }) => s > 0)
+    .sort((a, b) => b.s - a.s || b.l.postedAt.localeCompare(a.l.postedAt))
+    .slice(0, limit)
+    .map(({ l }) => l);
+}
