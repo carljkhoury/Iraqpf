@@ -328,7 +328,8 @@
     "reportChooseReason": "Choose a reason",
     "reportThanks": "Thank you. Our team will review this listing.",
     "reportSampleNote": "Sample listing: reports are not saved at this stage.",
-    "similarTitle": "Similar properties"
+    "similarTitle": "Similar properties",
+    "agentLabel": "Agent: {name}"
   },
   "map": {
     "region": "Property map",
@@ -337,5 +338,50 @@
     "approxNote": "Map locations are approximate to protect advertisers' privacy.",
     "closePreview": "Close preview",
     "areaLabel": "Approximate area of the property"
+  },
+  "agencies": {
+    "title": "Real estate agencies in Iraq",
+    "metaDescription": "Browse real estate agencies in Baghdad, Erbil and Basra, see their properties and contact them directly on Mahalla.",
+    "subtitle": "Real estate agencies in Baghdad, Erbil and Basra, with their listings, team and contact details.",
+    "searchLabel": "Find an agency",
+    "searchPlaceholder": "Agency name",
+    "searchButton": "Search",
+    "allCities": "All cities",
+    "count": "{count, plural, =0 {No agencies} one {# agency} other {# agencies}}",
+    "emptyTitle": "No agencies match",
+    "emptyText": "Try another city or a different name.",
+    "registerTitle": "Own a real estate agency?",
+    "registerText": "Create a page for your agency on Mahalla, show your properties to people searching across Iraq, and manage your team and listings in one place.",
+    "registerButton": "Register your agency",
+    "verifiedAgency": "Verified agency",
+    "viewProfile": "View agency",
+    "about": "About",
+    "established": "Established {year}",
+    "onMahalla": "On Mahalla since {year}",
+    "stats": {
+      "listings": "Active listings",
+      "sale": "For sale",
+      "rent": "For rent",
+      "agents": "Team members"
+    },
+    "officeTitle": "Office",
+    "address": "Address",
+    "hours": "Working hours",
+    "languages": "Languages",
+    "listingsTitle": "Properties",
+    "tabSale": "For sale ({count})",
+    "tabRent": "For rent ({count})",
+    "noListings": "No properties in this section right now.",
+    "teamTitle": "Our team",
+    "contactTitle": "Contact the agency",
+    "whatsappMessage": "Hello, I found your agency on Mahalla and I'd like to ask about your properties: {url}",
+    "agentWhatsappMessage": "Hello {name}, I found you on Mahalla and I'd like to ask about your properties: {url}",
+    "languageNames": {
+      "ar": "Arabic",
+      "en": "English",
+      "ku": "Kurdish",
+      "tr": "Turkish"
+    },
+    "registerPageTitle": "Register your agency"
   }
 }

@@ -2,7 +2,13 @@ import type { Currency } from '@mahalla/shared';
 import type { CategoryGroupKey, CategoryKey, PurposeSlug } from './catalog';
 import { USD_TO_IQD } from './exchange';
 import type { LocationOption } from './locations';
-import { type ListingCardData, SAMPLE_LISTINGS } from './sample-data';
+import { normalizeForSearch } from '@mahalla/shared';
+import {
+  type AgencyProfile,
+  type ListingCardData,
+  SAMPLE_AGENCIES,
+  SAMPLE_LISTINGS,
+} from './sample-data';
 import { GROUP_MEMBERS, type SearchFilters } from './search-params';
 
 export const PAGE_SIZE = 12;
@@ -123,4 +129,52 @@ export function similarListings(listing: ListingCardData, limit: number): Listin
     .sort((a, b) => b.s - a.s || b.l.postedAt.localeCompare(a.l.postedAt))
     .slice(0, limit)
     .map(({ l }) => l);
+}
+
+export function getAgency(slug: string): AgencyProfile | undefined {
+  return SAMPLE_AGENCIES.find((a) => a.slug === slug);
+}
+
+export function listAgencies({ city, q }: { city?: string; q?: string }): AgencyProfile[] {
+  const query = q ? normalizeForSearch(q) : '';
+  return SAMPLE_AGENCIES.filter(
+    (a) =>
+      (!city || a.cityKey === city) &&
+      (!query ||
+        normalizeForSearch(a.name.ar).includes(query) ||
+        normalizeForSearch(a.name.en).includes(query)),
+  ).sort((a, b) => Number(b.verified) - Number(a.verified) || b.listingCount - a.listingCount);
+}
+
+export function agencyListings(slug: string, purpose: 'sale' | 'rent', page: number): SearchResult {
+  const all = SAMPLE_LISTINGS.filter(
+    (l) =>
+      l.advertiser.slug === slug &&
+      (purpose === 'sale'
+        ? l.purpose === 'sale'
+        : l.purpose === 'rent' || l.purpose === 'key_money'),
+  ).sort((a, b) => Number(b.featured) - Number(a.featured) || b.postedAt.localeCompare(a.postedAt));
+  const pageCount = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+  const current = Math.min(Math.max(1, page), pageCount);
+  return {
+    items: all.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE),
+    total: all.length,
+    page: current,
+    pageCount,
+  };
+}
+
+export function agencyStats(slug: string) {
+  const mine = SAMPLE_LISTINGS.filter((l) => l.advertiser.slug === slug);
+  const byAgent = new Map<string, number>();
+  for (const l of mine) {
+    const agent = l.advertiser.agent?.slug;
+    if (agent) byAgent.set(agent, (byAgent.get(agent) ?? 0) + 1);
+  }
+  return {
+    total: mine.length,
+    sale: mine.filter((l) => l.purpose === 'sale').length,
+    rent: mine.filter((l) => l.purpose !== 'sale').length,
+    byAgent,
+  };
 }

@@ -70,6 +70,8 @@ export interface ListingCardData {
     initial: LocalizedText;
     kind: 'agency' | 'owner';
     slug?: string;
+    /** The agency's agent handling this listing. */
+    agent?: { slug: string; name: LocalizedText };
     /** E.164. Sample numbers only; calls are blocked while SAMPLE_MODE is on. */
     phone: string;
   };
@@ -86,6 +88,28 @@ export interface AgencyCardData {
   verified: boolean;
   color: string;
   phone: string;
+}
+
+export interface AgentData {
+  slug: string;
+  name: LocalizedText;
+  initial: LocalizedText;
+  title: LocalizedText;
+  languages: LanguageKey[];
+  phone: string;
+}
+
+export type LanguageKey = 'ar' | 'en' | 'ku' | 'tr';
+
+/** Full agency profile (agency page). Cards use the AgencyCardData subset. */
+export interface AgencyProfile extends AgencyCardData {
+  about: LocalizedText;
+  established: number;
+  onMahallaSince: number;
+  office: { address: LocalizedText; lat: number; lng: number };
+  hours: LocalizedText;
+  languages: LanguageKey[];
+  agents: AgentData[];
 }
 
 export interface PopularArea {
@@ -441,6 +465,161 @@ const AGENCIES: Omit<AgencyCardData, 'listingCount'>[] = [
     phone: '+9647700000006',
   },
 ];
+
+const HOURS_STANDARD: LocalizedText = {
+  ar: 'السبت إلى الخميس، 9 صباحاً - 6 مساءً',
+  en: 'Saturday to Thursday, 9 am - 6 pm',
+};
+
+let agentPhone = 100;
+function agent(
+  slug: string,
+  ar: string,
+  en: string,
+  title: 'manager' | 'consultant',
+  languages: LanguageKey[],
+): AgentData {
+  agentPhone += 1;
+  return {
+    slug,
+    name: { ar, en },
+    initial: { ar: ar[0]!, en: en[0]! },
+    title:
+      title === 'manager'
+        ? { ar: 'مدير المكتب', en: 'Office manager' }
+        : { ar: 'مستشار عقاري', en: 'Property consultant' },
+    languages,
+    phone: `+9647700000${agentPhone}`,
+  };
+}
+
+const PROFILE_DETAILS: Record<string, Omit<AgencyProfile, keyof AgencyCardData>> = {
+  'al-nakheel-properties': {
+    about: {
+      ar: 'مكتب عقاري في بغداد متخصص في بيع وتأجير البيوت والشقق في المنصور واليرموك والحارثية. نساعد العوائل في إيجاد السكن المناسب ونتابع معاملات الطابو حتى التسليم.',
+      en: 'A Baghdad agency specialising in houses and apartments for sale and rent in Mansour, Yarmouk and Harthiya. We help families find the right home and follow the title-deed paperwork through to handover.',
+    },
+    established: 2009,
+    onMahallaSince: 2026,
+    office: {
+      address: { ar: 'شارع 14 رمضان، المنصور، بغداد', en: '14 Ramadan Street, Mansour, Baghdad' },
+      lat: 33.3141,
+      lng: 44.3448,
+    },
+    hours: HOURS_STANDARD,
+    languages: ['ar', 'en'],
+    agents: [
+      agent('ahmed-al-jubouri', 'أحمد الجبوري', 'Ahmed Al-Jubouri', 'manager', ['ar', 'en']),
+      agent('zainab-al-rubaie', 'زينب الربيعي', 'Zainab Al-Rubaie', 'consultant', ['ar', 'en']),
+      agent('mustafa-al-obaidi', 'مصطفى العبيدي', 'Mustafa Al-Obaidi', 'consultant', ['ar']),
+    ],
+  },
+  'dar-al-salam-real-estate': {
+    about: {
+      ar: 'نعمل منذ أكثر من عشر سنوات في الكرادة والجادرية والعرصات. نختص بالشقق الحديثة والفلل والعقارات التجارية، ونقدم خدمة التقييم العقاري للبائعين.',
+      en: 'Working in Karrada, Jadriya and Arasat for over ten years. We specialise in modern apartments, villas and commercial property, and offer valuations for sellers.',
+    },
+    established: 2013,
+    onMahallaSince: 2026,
+    office: {
+      address: {
+        ar: 'شارع الكرادة داخل، الكرادة، بغداد',
+        en: 'Karrada Dakhil Street, Karrada, Baghdad',
+      },
+      lat: 33.3012,
+      lng: 44.4205,
+    },
+    hours: HOURS_STANDARD,
+    languages: ['ar', 'en'],
+    agents: [
+      agent('ali-al-saadi', 'علي الساعدي', 'Ali Al-Saadi', 'manager', ['ar', 'en']),
+      agent('noor-al-hashimi', 'نور الهاشمي', 'Noor Al-Hashimi', 'consultant', ['ar', 'en']),
+    ],
+  },
+  'rusafa-realty': {
+    about: {
+      ar: 'مكتب عائلي في جانب الرصافة يغطي زيونة وشارع فلسطين والبلديات والأعظمية. نعرض بيوتاً وأراضي سكنية بأسعار مناسبة.',
+      en: 'A family-run office on the Rusafa side covering Zayouna, Palestine Street, Al-Baladiyat and Adhamiya, with houses and residential land at fair prices.',
+    },
+    established: 2017,
+    onMahallaSince: 2026,
+    office: {
+      address: { ar: 'شارع فلسطين، بغداد', en: 'Palestine Street, Baghdad' },
+      lat: 33.3428,
+      lng: 44.4372,
+    },
+    hours: {
+      ar: 'السبت إلى الخميس، 10 صباحاً - 8 مساءً',
+      en: 'Saturday to Thursday, 10 am - 8 pm',
+    },
+    languages: ['ar'],
+    agents: [
+      agent('hussein-al-kaabi', 'حسين الكعبي', 'Hussein Al-Kaabi', 'manager', ['ar']),
+      agent('sara-al-tamimi', 'سارة التميمي', 'Sara Al-Tamimi', 'consultant', ['ar', 'en']),
+    ],
+  },
+  'citadel-homes-erbil': {
+    about: {
+      ar: 'شركة عقارية في أربيل تعمل في المجمعات السكنية مثل دريم سيتي والقرية الإنكليزية والقرية الإيطالية، إضافة إلى عنكاوة. نخدم العملاء من داخل العراق وخارجه.',
+      en: 'An Erbil agency focused on residential compounds such as Dream City, English Village and Italian Village, as well as Ankawa. We serve clients from inside and outside Iraq.',
+    },
+    established: 2011,
+    onMahallaSince: 2026,
+    office: {
+      address: { ar: 'شارع 100، أربيل', en: '100 Meter Road, Erbil' },
+      lat: 36.2052,
+      lng: 43.9875,
+    },
+    hours: { ar: 'السبت إلى الخميس، 9 صباحاً - 5 مساءً', en: 'Saturday to Thursday, 9 am - 5 pm' },
+    languages: ['ku', 'ar', 'en', 'tr'],
+    agents: [
+      agent('karwan-ahmed', 'كاروان أحمد', 'Karwan Ahmed', 'manager', ['ku', 'ar', 'en']),
+      agent('shilan-omar', 'شيلان عمر', 'Shilan Omar', 'consultant', ['ku', 'en']),
+      agent('rebwar-mohammed', 'ريبوار محمد', 'Rebwar Mohammed', 'consultant', ['ku', 'ar', 'tr']),
+    ],
+  },
+  'shatt-al-arab-realty': {
+    about: {
+      ar: 'مكتب عقاري في البصرة يغطي الجزائر والعشار والطويسة، ويعرض البساتين والأراضي الزراعية في أبو الخصيب. نتعامل مع الشركات الباحثة عن مكاتب ومخازن.',
+      en: 'A Basra agency covering Al-Jazair, Al-Ashar and Al-Tuwaisa, with orchards and farmland in Abu al-Khaseeb. We also work with companies looking for offices and warehouses.',
+    },
+    established: 2008,
+    onMahallaSince: 2026,
+    office: {
+      address: { ar: 'شارع الجزائر، البصرة', en: 'Al-Jazair Street, Basra' },
+      lat: 30.5021,
+      lng: 47.8085,
+    },
+    hours: HOURS_STANDARD,
+    languages: ['ar', 'en'],
+    agents: [
+      agent('mohammed-al-mosawi', 'محمد الموسوي', 'Mohammed Al-Mosawi', 'manager', ['ar', 'en']),
+      agent('fatima-al-basri', 'فاطمة البصري', 'Fatima Al-Basri', 'consultant', ['ar']),
+    ],
+  },
+  'al-fayhaa-real-estate': {
+    about: {
+      ar: 'مكتب حديث في البصرة يعرض الشقق والبيوت للإيجار في البراضعية وحي المهندسين، مع خدمة إدارة العقارات للمالكين.',
+      en: 'A newer Basra office offering apartments and houses for rent in Al-Baradiya and Hay al-Muhandiseen, plus property management for owners.',
+    },
+    established: 2020,
+    onMahallaSince: 2026,
+    office: {
+      address: { ar: 'حي المهندسين، البصرة', en: 'Hay al-Muhandiseen, Basra' },
+      lat: 30.5296,
+      lng: 47.7712,
+    },
+    hours: {
+      ar: 'السبت إلى الخميس، 10 صباحاً - 7 مساءً',
+      en: 'Saturday to Thursday, 10 am - 7 pm',
+    },
+    languages: ['ar'],
+    agents: [
+      agent('abbas-al-asadi', 'عباس الأسدي', 'Abbas Al-Asadi', 'manager', ['ar']),
+      agent('maryam-al-halfi', 'مريم الحلفي', 'Maryam Al-Halfi', 'consultant', ['ar', 'en']),
+    ],
+  },
+};
 
 const OWNER: ListingCardData['advertiser'] = {
   name: { ar: 'المالك', en: 'Owner' },
@@ -874,15 +1053,18 @@ function generate(count: number): ListingCardData[] {
     const agencyPool = AGENCIES.filter((a) => a.cityKey === area.city);
     const byOwner = rule.residential && chance(0.3);
     const agency = byOwner ? null : pick(agencyPool);
-    const advertiser: ListingCardData['advertiser'] = agency
-      ? {
-          name: agency.name,
-          initial: agency.initial,
-          kind: 'agency',
-          slug: agency.slug,
-          phone: agency.phone,
-        }
-      : OWNER;
+    const handler = agency ? pick(PROFILE_DETAILS[agency.slug]!.agents) : null;
+    const advertiser: ListingCardData['advertiser'] =
+      agency && handler
+        ? {
+            name: agency.name,
+            initial: agency.initial,
+            kind: 'agency',
+            slug: agency.slug,
+            agent: { slug: handler.slug, name: handler.name },
+            phone: handler.phone,
+          }
+        : OWNER;
 
     const isLand = rule.interiors.length === 0;
     const adjective = pick(
@@ -989,8 +1171,9 @@ function generate(count: number): ListingCardData[] {
 
 export const SAMPLE_LISTINGS: ListingCardData[] = generate(72);
 
-export const SAMPLE_AGENCIES: AgencyCardData[] = AGENCIES.map((a) => ({
+export const SAMPLE_AGENCIES: AgencyProfile[] = AGENCIES.map((a) => ({
   ...a,
+  ...PROFILE_DETAILS[a.slug]!,
   listingCount: SAMPLE_LISTINGS.filter((l) => l.advertiser.slug === a.slug).length,
 }));
 

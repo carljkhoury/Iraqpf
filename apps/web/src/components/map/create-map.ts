@@ -26,6 +26,10 @@ export async function createMap(
     ...options,
   });
   map.touchZoomRotate.disableRotation();
+  // Keep the canvas matched to its box (MapLibre only tracks window resizes).
+  const resizeObserver = new ResizeObserver(() => map.resize());
+  resizeObserver.observe(container);
+  map.on('remove', () => resizeObserver.disconnect());
   // Controls sit on the "end" side: left in Arabic, right in English.
   map.addControl(
     new lib.NavigationControl({ showCompass: false }),

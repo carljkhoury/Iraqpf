@@ -17,13 +17,9 @@ type DemoAction = 'call' | 'whatsapp' | null;
  * while SAMPLE_MODE is on, calls and chats show an explanation instead of
  * contacting the sample numbers. Lead tracking is added in Phase 3.
  */
-function useContact(listing: ListingCardData, pageUrl: string) {
-  const t = useTranslations('property');
+function useContact(phone: string, message: string) {
   const [revealed, setRevealed] = useState(false);
   const [demo, setDemo] = useState<DemoAction>(null);
-  const phone = listing.advertiser.phone;
-  const message = t('whatsappMessage', { ref: listing.id, url: pageUrl });
-
   return {
     revealed,
     reveal: () => setRevealed(true),
@@ -63,15 +59,17 @@ function CallButton({
   contact,
   className,
   compact = false,
+  size = 'lg',
 }: {
   contact: ReturnType<typeof useContact>;
   className?: string;
   compact?: boolean;
+  size?: 'sm' | 'lg';
 }) {
   const t = useTranslations('property');
   if (!contact.revealed && !compact) {
     return (
-      <Button variant="secondary" size="lg" className={className} onClick={contact.reveal}>
+      <Button variant="secondary" size={size} className={className} onClick={contact.reveal}>
         <Phone className="size-5" aria-hidden />
         {t('showNumber')}
       </Button>
@@ -92,7 +90,7 @@ function CallButton({
   if (SAMPLE_MODE) {
     return (
       <Button
-        size="lg"
+        size={size}
         className={className}
         onClick={() => {
           contact.reveal();
@@ -104,7 +102,7 @@ function CallButton({
     );
   }
   return (
-    <Button asChild size="lg" className={className}>
+    <Button asChild size={size} className={className}>
       <a href={contact.telHref} onClick={contact.reveal}>
         {content}
       </a>
@@ -115,9 +113,11 @@ function CallButton({
 function WhatsAppButton({
   contact,
   className,
+  size = 'lg',
 }: {
   contact: ReturnType<typeof useContact>;
   className?: string;
+  size?: 'sm' | 'lg';
 }) {
   const t = useTranslations('property');
   const content = (
@@ -130,7 +130,7 @@ function WhatsAppButton({
     return (
       <Button
         variant="whatsapp"
-        size="lg"
+        size={size}
         className={className}
         onClick={() => contact.setDemo('whatsapp')}
       >
@@ -139,7 +139,7 @@ function WhatsAppButton({
     );
   }
   return (
-    <Button asChild variant="whatsapp" size="lg" className={className}>
+    <Button asChild variant="whatsapp" size={size} className={className}>
       <a href={contact.waHref} target="_blank" rel="noopener noreferrer">
         {content}
       </a>
@@ -147,11 +147,32 @@ function WhatsAppButton({
   );
 }
 
+/** Show number / call + WhatsApp for any advertiser, agency or agent. */
+export function ContactButtons({
+  phone,
+  message,
+  size = 'lg',
+  className,
+}: {
+  phone: string;
+  message: string;
+  size?: 'sm' | 'lg';
+  className?: string;
+}) {
+  const contact = useContact(phone, message);
+  return (
+    <div className={cn('grid gap-2', size === 'sm' && 'grid-cols-2', className)}>
+      <CallButton contact={contact} className="w-full" compact={size === 'sm'} size={size} />
+      <WhatsAppButton contact={contact} className="w-full" size={size} />
+      <DemoDialog action={contact.demo} onClose={() => contact.setDemo(null)} />
+    </div>
+  );
+}
+
 export function ContactCard({ listing, pageUrl }: { listing: ListingCardData; pageUrl: string }) {
   const t = useTranslations('property');
   const tl = useTranslations('listing');
   const locale = useLocale() as Locale;
-  const contact = useContact(listing, pageUrl);
   const { advertiser } = listing;
 
   return (
@@ -187,12 +208,17 @@ export function ContactCard({ listing, pageUrl }: { listing: ListingCardData; pa
           )}
         </div>
       </div>
-      <div className="mt-5 grid gap-2">
-        <CallButton contact={contact} className="w-full" />
-        <WhatsAppButton contact={contact} className="w-full" />
-      </div>
+      {advertiser.agent && (
+        <p className="mt-3 rounded-md bg-sand-50 px-3 py-2 text-sm text-sand-700">
+          {t('agentLabel', { name: advertiser.agent.name[locale] })}
+        </p>
+      )}
+      <ContactButtons
+        phone={advertiser.phone}
+        message={t('whatsappMessage', { ref: listing.id, url: pageUrl })}
+        className="mt-5"
+      />
       <p className="mt-3 text-center text-xs text-sand-500">{t('mentionMahalla')}</p>
-      <DemoDialog action={contact.demo} onClose={() => contact.setDemo(null)} />
     </div>
   );
 }
@@ -205,7 +231,11 @@ export function MobileContactBar({
   listing: ListingCardData;
   pageUrl: string;
 }) {
-  const contact = useContact(listing, pageUrl);
+  const t = useTranslations('property');
+  const contact = useContact(
+    listing.advertiser.phone,
+    t('whatsappMessage', { ref: listing.id, url: pageUrl }),
+  );
   return (
     <div
       className={cn(

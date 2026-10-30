@@ -34,7 +34,10 @@ Designed as **real, reusable components in code** (not throwaway mockups), shown
 - ✅ Property card: grid, featured and list variants
 - ✅ Property details page: photo grid + swipeable phone gallery + full-screen viewer (keyboard, swipe, reading-direction aware), price, key facts, description, details table (incl. price per m², deed, reference), amenities, location, contact card (show number, call, WhatsApp with a ready-made message), sticky call/WhatsApp bar on phones, share (native share sheet or copy link), report form, similar properties, structured data for Google, permanent ID-based URLs with redirects for old titles
   - While on sample data, call/WhatsApp show a "sample listing" notice instead of contacting anyone (`lib/demo.ts`); reports are not stored until Phase 3
-- ⬜ Agency and agent profile pages
+- ✅ Agencies directory (`/agencies`): filter by city, Arabic-aware name search, cards with listings for sale/rent and team size, call to action for agencies
+- ✅ Agency profile pages (`/agencies/{slug}`): header with logo, verified badge, established year, stats, about, listings with For sale / For rent tabs and pagination, team members with their own call/WhatsApp, office address, hours, languages and office map, structured data for Google
+- ✅ Listings show the agent handling them on the property page
+- ⬜ Individual agent pages (planned with advertiser accounts in Phase 3)
 - ⬜ User dashboard: favourites, recently viewed, settings
 - ⬜ Advertiser dashboard: listings, add/edit listing wizard, stats
 - ⬜ Admin dashboard layout & key screens
@@ -46,7 +49,7 @@ Also done in Phase 2 so far:
 - ✅ Shared formatters with unit tests: prices (IQD/USD, compact "250 مليون د.ع"), areas (m²/dunam/olk), Iraqi phone numbers (all common input formats, including Arabic-Indic digits), relative dates with correct Arabic plurals, Arabic search normalization
 - ✅ Bidi-safe display: only digits are isolated left-to-right, so Arabic units like `د.ع` and `م²` render correctly
 - ✅ Favourites saved in the browser (moves to user accounts in Phase 3)
-- ✅ 58 browser tests and 24 unit tests in Arabic and English, desktop and mobile
+- ✅ 70 browser tests and 24 unit tests in Arabic and English, desktop and mobile
 - ✅ 72 realistic sample listings across Baghdad, Erbil and Basra with real photos (Unsplash, free licence) and illustration fallback
 - ✅ Site hidden from search engines until launch (robots.txt, meta tag and HTTP header)
 - ✅ Pages not built yet show a localized "being built" page (not indexed)
