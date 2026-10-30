@@ -1,7 +1,16 @@
 import type { Locale } from '@mahalla/shared';
 import type { Metadata } from 'next';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+/**
+ * Public base URL for canonical and hreflang links. Set NEXT_PUBLIC_SITE_URL
+ * once the real domain exists; on Vercel previews we fall back to the
+ * project's production address, locally to localhost.
+ */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
 
 /** Locale-prefixed path: Arabic at the root, English under /en (decision Q-03). */
 export function localizedPath(locale: Locale, path: string): string {
