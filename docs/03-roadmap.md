@@ -6,29 +6,29 @@ Legend: ✅ done · 🔄 in progress · ⏳ waiting for founder input · ⬜ not
 
 ---
 
-## Phase 1: Discovery & planning 🔄
+## Phase 1: Discovery & planning ✅
 
 - ✅ Discovery round 1: business, users, advertisers, monetization, market questions
 - ✅ Decisions log (`01-decisions-log.md`)
 - ✅ Technology stack & architecture approved (`02-architecture.md`)
 - ✅ Brand name: **Mahalla (محلّة)**
-- ⏳ Database design: full schema, relationships, indexes (`05-database.md`): awaiting approval
+- ✅ Database design approved (`05-database.md`)
 - ✅ Initial catalog drafted (`06-catalog.md`): Iraq-team review pending
 - ✅ Location dataset (`packages/db/seed/locations.iq.json`): 19 governorates, 37 cities, 98 neighbourhoods, 5 compounds, all marked unreviewed
-- ⏳ Design system v0.1 (`07-design-system.md`): awaiting approval
-- ⬜ Sitemap, user flows and permission matrix
+- ✅ Design system v0.1 approved (`07-design-system.md`)
+- ⬜ Sitemap, user flows and permission matrix (moved into Phase 2/3 as each area is built)
 
 **Gate:** founder approves stack, schema, design system.
 
-## Phase 2: UI/UX
+## Phase 2: UI/UX 🔄
 
 Designed as **real, reusable components in code** (not throwaway mockups), shown with sample data in both Arabic RTL and English LTR, on mobile and desktop. These become the production pages in Phase 3.
 
-- ⬜ Project scaffolding (monorepo, linting, CI, i18n, RTL foundation)
-- ⬜ Design system component library (buttons, inputs, selects, cards, badges, dialogs, tabs, pagination…)
-- ⬜ Homepage
+- ✅ Project scaffolding: pnpm/Turborepo monorepo, TypeScript, ESLint, Prettier, GitHub Actions CI, next-intl (Arabic at `/`, English at `/en`), RTL foundation, self-hosted IBM Plex fonts
+- 🔄 Design system component library: tokens, Button, Badge, Chip, SegmentedControl, Field/Input/PhoneInput/Select, Logo, DisplayValue done; review page at `/design`. Dialogs, tabs, pagination and range inputs come with the pages that need them
+- ✅ Homepage: hero search (Arabic-aware location autocomplete, purpose tabs, property type), featured and recent listings, property types, popular areas, agencies, advertiser call to action, header with language switcher, mobile menu, footer
 - ⬜ Search results: grid/list, filter panel (dynamic per category), sorting, map view
-- ⬜ Property card variants (standard, featured, compact)
+- 🔄 Property card: standard and featured variants done (list and compact variants come with search results)
 - ⬜ Property details page
 - ⬜ Agency and agent profile pages
 - ⬜ User dashboard: favourites, recently viewed, settings
@@ -37,6 +37,13 @@ Designed as **real, reusable components in code** (not throwaway mockups), shown
 - ⬜ Arabic and English review pass on every screen
 
 **Gate:** founder approves designs on real devices.
+
+Also done in Phase 2 so far:
+- ✅ Shared formatters with unit tests: prices (IQD/USD, compact "250 مليون د.ع"), areas (m²/dunam/olk), Iraqi phone numbers (all common input formats, including Arabic-Indic digits), relative dates with correct Arabic plurals, Arabic search normalization
+- ✅ Bidi-safe display: only digits are isolated left-to-right, so Arabic units like `د.ع` and `م²` render correctly
+- ✅ Favourites saved in the browser (moves to user accounts in Phase 3)
+- ✅ 21 browser tests in Arabic and English, desktop and mobile
+- ✅ Pages not built yet show a localized "being built" page (not indexed)
 
 ## Phase 3: Core development
 
@@ -62,7 +69,7 @@ Designed as **real, reusable components in code** (not throwaway mockups), shown
 - ⬜ User, advertiser and agency management
 - ⬜ Location management (tree editor, translations, map boundaries)
 - ⬜ Category & attribute management
-- ⬜ Homepage content, featured listings/agencies, banners (AR/EN independent)
+- ✅ Homepage: hero search (Arabic-aware location autocomplete, purpose tabs, property type), featured and recent listings, property types, popular areas, agencies, advertiser call to action, header with language switcher, mobile menu, footer content, featured listings/agencies, banners (AR/EN independent)
 - ⬜ Platform settings (exchange rate, quotas, expiry, feature flags)
 - ⬜ Platform statistics dashboard
 

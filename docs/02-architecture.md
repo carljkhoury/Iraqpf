@@ -134,7 +134,9 @@ Each module owns its database tables and exposes services; modules never reach i
 
 Cloudflare's network has data centres in and around Iraq, so cached pages and images load fast even if the server is in Europe.
 
-## 9. Repository layout (planned)
+## 9. Repository layout
+
+Shared TypeScript settings live in `tsconfig.base.json`; ESLint config sits with each app (a separate `config` package was dropped as unnecessary at this size).
 
 ```
 apps/
@@ -146,7 +148,6 @@ packages/
   shared/     Zod schemas, types, constants, formatting helpers
   i18n/       Message catalogs (ar, en) + checks
   db/         Drizzle schema, migrations, seed data (locations, categories)
-  config/     Shared ESLint/TS/Tailwind config
 docs/         This documentation
 infra/        Docker Compose, deployment configs
 ```

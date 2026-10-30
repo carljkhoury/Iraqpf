@@ -1,0 +1,13 @@
+{
+  "name": "@mahalla/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./messages/*": "./messages/*.json"
+  },
+  "scripts": {
+    "check": "node scripts/check-messages.mjs",
+    "test": "node scripts/check-messages.mjs"
+  }
+}

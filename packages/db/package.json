@@ -1,0 +1,9 @@
+{
+  "name": "@mahalla/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./seed/locations": "./seed/locations.iq.json"
+  }
+}

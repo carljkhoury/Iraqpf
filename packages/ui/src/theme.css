@@ -1,0 +1,108 @@
+/*
+ * Mahalla design tokens (docs/07-design-system.md).
+ * Imported by every app after `@import "tailwindcss";`.
+ */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-lapis-50: #eef3fb;
+  --color-lapis-100: #d9e3f5;
+  --color-lapis-200: #b3c7eb;
+  --color-lapis-300: #85a3dc;
+  --color-lapis-400: #557bc9;
+  --color-lapis-500: #3360b5;
+  --color-lapis-600: #22489a;
+  --color-lapis-700: #1c3a7d;
+  --color-lapis-800: #172f63;
+  --color-lapis-900: #12244b;
+
+  --color-gold-50: #fdf8eb;
+  --color-gold-100: #faedc8;
+  --color-gold-200: #f3dba0;
+  --color-gold-300: #edc56a;
+  --color-gold-500: #d4a12a;
+  --color-gold-700: #8f6814;
+
+  --color-sand-25: #fcfbf9;
+  --color-sand-50: #f7f5f2;
+  --color-sand-100: #efece7;
+  --color-sand-200: #e2ded7;
+  --color-sand-300: #cbc5bc;
+  --color-sand-500: #7c766c;
+  --color-sand-700: #45413b;
+  --color-sand-900: #1c1a17;
+
+  --color-success-50: #e3f4ea;
+  --color-success-600: #1e8e5a;
+  --color-warning-50: #fbf0dd;
+  --color-warning-600: #b7791f;
+  --color-danger-50: #fbeceb;
+  --color-danger-600: #c2362b;
+  --color-whatsapp: #1f9d55;
+  --color-whatsapp-dark: #18804a;
+
+  --font-sans: var(--font-locale);
+  --font-arabic: 'IBM Plex Sans Arabic', 'IBM Plex Sans', 'Noto Sans Arabic', Tahoma, sans-serif;
+  --font-latin: 'IBM Plex Sans', 'IBM Plex Sans Arabic', 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-card: 0 1px 2px rgb(28 26 23 / 0.04);
+  --shadow-raised: 0 4px 16px rgb(28 26 23 / 0.08);
+  --shadow-overlay: 0 12px 40px rgb(18 36 75 / 0.18);
+}
+
+@layer base {
+  html {
+    --font-locale: var(--font-latin);
+    -webkit-text-size-adjust: 100%;
+  }
+  html[lang='ar'] {
+    --font-locale: var(--font-arabic);
+  }
+  body {
+    background-color: var(--color-sand-25);
+    color: var(--color-sand-700);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Arabic needs more vertical room for ascenders/descenders. */
+  html[lang='ar'] body {
+    line-height: 1.75;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-sand-900);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lapis-500);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility ltr-isolate {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}

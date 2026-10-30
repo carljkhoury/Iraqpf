@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6E1F2"/><stop offset="1" stop-color="#EEF3FB"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#s)"/><circle cx="330" cy="62" r="22" fill="#FAEDC8"/>
+<rect y="232" width="400" height="68" fill="#D9CFC0"/>
+
+<rect x="90" y="92" width="200" height="140" fill="#EFE7DA"/><rect x="84" y="84" width="212" height="12" fill="#D8CBB6"/>
+<rect x="150" y="104" width="80" height="48" fill="#A7825A"/><g stroke="#7C5E3C" stroke-width="3"><line x1="166" y1="104" x2="166" y2="152"/><line x1="182" y1="104" x2="182" y2="152"/><line x1="198" y1="104" x2="198" y2="152"/><line x1="214" y1="104" x2="214" y2="152"/></g>
+<rect x="104" y="110" width="26" height="30" fill="#6F87B5" rx="2"/><rect x="250" y="110" width="26" height="30" fill="#6F87B5" rx="2"/><rect x="104" y="172" width="26" height="30" fill="#6F87B5" rx="2"/><rect x="250" y="172" width="26" height="30" fill="#6F87B5" rx="2"/>
+<rect x="170" y="176" width="40" height="56" fill="#22489A" rx="2"/><rect x="60" y="200" width="30" height="32" fill="#CFC5B4"/>
+<g transform="translate(50 0)"><rect x="-4" y="133.0" width="8" height="99.0" fill="#8C7A5B"/>
+<g fill="#7E9A6E" transform="translate(0 133.0)"><ellipse cx="-22" cy="4" rx="26" ry="7" transform="rotate(-20)"/><ellipse cx="22" cy="4" rx="26" ry="7" transform="rotate(20)"/><ellipse cx="-14" cy="-8" rx="22" ry="6" transform="rotate(-50)"/><ellipse cx="14" cy="-8" rx="22" ry="6" transform="rotate(50)"/></g></g><g transform="translate(340 0)"><rect x="-4" y="116.5" width="8" height="115.5" fill="#8C7A5B"/>
+<g fill="#7E9A6E" transform="translate(0 116.5)"><ellipse cx="-22" cy="4" rx="26" ry="7" transform="rotate(-20)"/><ellipse cx="22" cy="4" rx="26" ry="7" transform="rotate(20)"/><ellipse cx="-14" cy="-8" rx="22" ry="6" transform="rotate(-50)"/><ellipse cx="14" cy="-8" rx="22" ry="6" transform="rotate(50)"/></g></g>
+</svg>

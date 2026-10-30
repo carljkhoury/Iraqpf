@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "siteName": "محلّة",
+    "titleTemplate": "%s | محلّة",
+    "homeTitle": "محلّة | عقارات للبيع والإيجار في العراق",
+    "homeDescription": "ابحث عن بيوت وشقق وأراضٍ وعقارات تجارية للبيع والإيجار في بغداد وأربيل والبصرة وكل أنحاء العراق. تواصل مباشرة مع المالكين والمكاتب العقارية."
+  },
+  "common": {
+    "skipToContent": "انتقل إلى المحتوى",
+    "sampleNotice": "بيانات تجريبية لمراجعة التصميم: العقارات والمكاتب المعروضة ليست حقيقية.",
+    "viewAll": "عرض الكل",
+    "close": "إغلاق",
+    "menu": "القائمة",
+    "search": "بحث",
+    "backHome": "العودة إلى الرئيسية"
+  },
+  "nav": {
+    "buy": "شراء",
+    "rent": "إيجار",
+    "commercial": "تجاري",
+    "land": "أراضي",
+    "agencies": "المكاتب العقارية",
+    "listProperty": "أضف عقارك",
+    "login": "تسجيل الدخول",
+    "mainLabel": "التنقل الرئيسي"
+  },
+  "language": {
+    "switchTo": "English",
+    "switchLabel": "التبديل إلى الإنكليزية"
+  },
+  "hero": {
+    "title": "ابحث عن بيتك في محلّتك",
+    "subtitle": "بيوت وشقق وأراضٍ وعقارات تجارية للبيع والإيجار في كل أنحاء العراق.",
+    "purposeLabel": "نوع البحث",
+    "tabs": {
+      "buy": "شراء",
+      "rent": "إيجار",
+      "commercial": "تجاري"
+    },
+    "commercialPurpose": {
+      "buy": "للبيع",
+      "rent": "للإيجار"
+    },
+    "locationLabel": "الموقع",
+    "locationPlaceholder": "المحافظة، المدينة أو المنطقة",
+    "locationEmpty": "لا توجد مناطق مطابقة",
+    "typeLabel": "نوع العقار",
+    "submit": "بحث",
+    "popular": "بحث شائع:",
+    "clearLocation": "مسح الموقع"
+  },
+  "home": {
+    "featuredTitle": "عقارات مميزة",
+    "featuredSubtitle": "مختارة من المكاتب العقارية والمالكين في محلّة",
+    "recentTitle": "أضيفت حديثاً",
+    "recentSubtitle": "آخر العقارات المعروضة للبيع والإيجار",
+    "typesTitle": "تصفح حسب نوع العقار",
+    "locationsTitle": "مناطق مطلوبة",
+    "locationsSubtitle": "أكثر المناطق بحثاً في بغداد وأربيل والبصرة",
+    "agenciesTitle": "مكاتب عقارية مميزة",
+    "agenciesSubtitle": "تواصل مع مكاتب موثوقة في مدينتك",
+    "ctaTitle": "عندك عقار للبيع أو الإيجار؟",
+    "ctaText": "أضف عقارك مجاناً واجعل آلاف الباحثين في العراق يتواصلون معك مباشرة عبر الهاتف أو واتساب.",
+    "ctaPoints": {
+      "free": "النشر مجاني",
+      "whatsapp": "تواصل مباشر عبر واتساب",
+      "stats": "إحصائيات المشاهدات والاتصالات"
+    },
+    "ctaButton": "أضف عقارك مجاناً",
+    "ctaAgency": "سجّل مكتبك العقاري"
+  },
+  "listing": {
+    "typeLine": "{category} {purpose}",
+    "purpose": {
+      "sale": "للبيع",
+      "rent": "للإيجار",
+      "key_money": "سرقفلية"
+    },
+    "perMonth": "/ شهرياً",
+    "perYear": "/ سنوياً",
+    "beds": "{count, plural, =0 {ستوديو} one {غرفة واحدة} two {غرفتان} few {# غرف} many {# غرفة} other {# غرفة}}",
+    "baths": "{count, plural, one {حمام واحد} two {حمامان} few {# حمامات} many {# حماماً} other {# حمام}}",
+    "featured": "مميز",
+    "verified": "موثّق",
+    "photos": "الصور",
+    "saveFavourite": "حفظ في المفضلة",
+    "removeFavourite": "إزالة من المفضلة",
+    "owner": "المالك",
+    "count": "{count, plural, =0 {لا توجد عقارات} one {عقار واحد} two {عقاران} few {# عقارات} many {# عقاراً} other {# عقار}}"
+  },
+  "catalog": {
+    "categories": {
+      "properties": "كل العقارات",
+      "residential": "سكني",
+      "commercial": "تجاري",
+      "land": "أراضي",
+      "apartment": "شقة",
+      "house": "بيت",
+      "villa": "فيلا",
+      "floor": "طابق",
+      "annex": "مشتمل",
+      "residential_building": "عمارة سكنية",
+      "residential_land": "أرض سكنية",
+      "office": "مكتب",
+      "shop": "محل تجاري",
+      "showroom": "معرض",
+      "warehouse": "مخزن",
+      "commercial_building": "عمارة تجارية",
+      "commercial_land": "أرض تجارية",
+      "hotel": "فندق",
+      "factory": "معمل",
+      "agricultural_land": "أرض زراعية",
+      "farm": "بستان / مزرعة",
+      "industrial_land": "أرض صناعية"
+    },
+    "plural": {
+      "apartment": "شقق",
+      "house": "بيوت",
+      "villa": "فلل",
+      "residential_land": "أراضٍ سكنية",
+      "office": "مكاتب",
+      "shop": "محلات",
+      "warehouse": "مخازن",
+      "farm": "بساتين ومزارع"
+    },
+    "deed": {
+      "tabu_sirf": "طابو صرف",
+      "agricultural": "زراعي",
+      "musha": "مشاع",
+      "investment": "استثمار",
+      "contract": "عقد / حجة"
+    },
+    "furnishing": {
+      "furnished": "مؤثث",
+      "semi_furnished": "شبه مؤثث",
+      "unfurnished": "غير مؤثث"
+    }
+  },
+  "footer": {
+    "tagline": "لكل بيت محلّة",
+    "about": "سوق العقارات العراقي للبيع والإيجار. نربط الباحثين بالمالكين والمكاتب العقارية في كل المحافظات.",
+    "searchTitle": "ابحث",
+    "areasTitle": "مناطق مطلوبة",
+    "advertisersTitle": "للمعلنين",
+    "companyTitle": "محلّة",
+    "aboutUs": "من نحن",
+    "contact": "اتصل بنا",
+    "terms": "شروط الاستخدام",
+    "privacy": "سياسة الخصوصية",
+    "help": "المساعدة",
+    "rights": "© {year} محلّة. جميع الحقوق محفوظة."
+  },
+  "comingSoon": {
+    "title": "هذه الصفحة قيد الإنشاء",
+    "text": "نعمل على بناء هذه الصفحة ضمن المرحلة الحالية من تطوير محلّة. ستكون متاحة قريباً."
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "text": "ربما تم نقل الصفحة أو أن الرابط غير صحيح."
+  },
+  "design": {
+    "title": "نظام التصميم",
+    "intro": "مكوّنات محلّة الأساسية كما تظهر في الواجهة العربية والإنكليزية. هذه الصفحة داخلية للمراجعة.",
+    "colors": "الألوان",
+    "typography": "الخطوط",
+    "buttons": "الأزرار",
+    "badges": "الشارات",
+    "chips": "الاختيارات",
+    "forms": "حقول الإدخال",
+    "cards": "بطاقات العقارات",
+    "phoneLabel": "رقم الهاتف",
+    "phoneHint": "سنرسل لك رمز تحقق عبر واتساب أو رسالة نصية",
+    "phoneInvalid": "أدخل رقم موبايل عراقي صحيح يبدأ بـ 07",
+    "phoneValid": "سيتم الحفظ بالصيغة الدولية: {value}",
+    "bedrooms": "غرف النوم",
+    "sampleHeading": "عنوان رئيسي",
+    "sampleBody": "شقة حديثة البناء في الطابق الثالث، ثلاث غرف نوم وصالة واسعة، مع مولدة أهلية وخط ذهبي.",
+    "buttonPrimary": "أضف عقارك",
+    "buttonSecondary": "حفظ البحث",
+    "buttonGhost": "إلغاء",
+    "buttonDanger": "حذف الإعلان",
+    "buttonWhatsapp": "واتساب",
+    "badgeNew": "جديد",
+    "badgePending": "قيد المراجعة",
+    "badgeExpired": "منتهي"
+  }
+}

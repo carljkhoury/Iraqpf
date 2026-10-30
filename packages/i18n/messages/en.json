@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "siteName": "Mahalla",
+    "titleTemplate": "%s | Mahalla",
+    "homeTitle": "Mahalla | Property for sale and rent in Iraq",
+    "homeDescription": "Find houses, apartments, land and commercial property for sale and rent in Baghdad, Erbil, Basra and across Iraq. Contact owners and real estate offices directly."
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "sampleNotice": "Sample data for design review: the properties and agencies shown are not real.",
+    "viewAll": "View all",
+    "close": "Close",
+    "menu": "Menu",
+    "search": "Search",
+    "backHome": "Back to home"
+  },
+  "nav": {
+    "buy": "Buy",
+    "rent": "Rent",
+    "commercial": "Commercial",
+    "land": "Land",
+    "agencies": "Agencies",
+    "listProperty": "List your property",
+    "login": "Log in",
+    "mainLabel": "Main navigation"
+  },
+  "language": {
+    "switchTo": "العربية",
+    "switchLabel": "Switch to Arabic"
+  },
+  "hero": {
+    "title": "Find your home in your mahalla",
+    "subtitle": "Houses, apartments, land and commercial property for sale and rent across Iraq.",
+    "purposeLabel": "Search type",
+    "tabs": {
+      "buy": "Buy",
+      "rent": "Rent",
+      "commercial": "Commercial"
+    },
+    "commercialPurpose": {
+      "buy": "For sale",
+      "rent": "For rent"
+    },
+    "locationLabel": "Location",
+    "locationPlaceholder": "Governorate, city or area",
+    "locationEmpty": "No matching areas",
+    "typeLabel": "Property type",
+    "submit": "Search",
+    "popular": "Popular searches:",
+    "clearLocation": "Clear location"
+  },
+  "home": {
+    "featuredTitle": "Featured properties",
+    "featuredSubtitle": "Hand-picked from agencies and owners on Mahalla",
+    "recentTitle": "Recently added",
+    "recentSubtitle": "The latest properties for sale and rent",
+    "typesTitle": "Browse by property type",
+    "locationsTitle": "Popular areas",
+    "locationsSubtitle": "The most searched areas in Baghdad, Erbil and Basra",
+    "agenciesTitle": "Featured agencies",
+    "agenciesSubtitle": "Contact trusted real estate offices in your city",
+    "ctaTitle": "Have a property to sell or rent?",
+    "ctaText": "List it for free and let thousands of people searching across Iraq contact you directly by phone or WhatsApp.",
+    "ctaPoints": {
+      "free": "Free to list",
+      "whatsapp": "Direct WhatsApp contact",
+      "stats": "View and call statistics"
+    },
+    "ctaButton": "List your property for free",
+    "ctaAgency": "Register your agency"
+  },
+  "listing": {
+    "typeLine": "{category} {purpose}",
+    "purpose": {
+      "sale": "for sale",
+      "rent": "for rent",
+      "key_money": "(key money)"
+    },
+    "perMonth": "/ month",
+    "perYear": "/ year",
+    "beds": "{count, plural, =0 {Studio} one {# bed} other {# beds}}",
+    "baths": "{count, plural, one {# bath} other {# baths}}",
+    "featured": "Featured",
+    "verified": "Verified",
+    "photos": "Photos",
+    "saveFavourite": "Save to favourites",
+    "removeFavourite": "Remove from favourites",
+    "owner": "Owner",
+    "count": "{count, plural, =0 {No properties} one {# property} other {# properties}}"
+  },
+  "catalog": {
+    "categories": {
+      "properties": "All properties",
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "land": "Land",
+      "apartment": "Apartment",
+      "house": "House",
+      "villa": "Villa",
+      "floor": "Floor",
+      "annex": "Annex",
+      "residential_building": "Residential building",
+      "residential_land": "Residential land",
+      "office": "Office",
+      "shop": "Shop",
+      "showroom": "Showroom",
+      "warehouse": "Warehouse",
+      "commercial_building": "Commercial building",
+      "commercial_land": "Commercial land",
+      "hotel": "Hotel",
+      "factory": "Factory",
+      "agricultural_land": "Agricultural land",
+      "farm": "Farm / orchard",
+      "industrial_land": "Industrial land"
+    },
+    "plural": {
+      "apartment": "Apartments",
+      "house": "Houses",
+      "villa": "Villas",
+      "residential_land": "Residential land",
+      "office": "Offices",
+      "shop": "Shops",
+      "warehouse": "Warehouses",
+      "farm": "Farms"
+    },
+    "deed": {
+      "tabu_sirf": "Freehold (Tabu)",
+      "agricultural": "Agricultural title",
+      "musha": "Shared ownership",
+      "investment": "Investment",
+      "contract": "Contract / informal deed"
+    },
+    "furnishing": {
+      "furnished": "Furnished",
+      "semi_furnished": "Semi-furnished",
+      "unfurnished": "Unfurnished"
+    }
+  },
+  "footer": {
+    "tagline": "Every home has a mahalla",
+    "about": "Iraq's property marketplace for sale and rent, connecting people with owners and real estate offices in every governorate.",
+    "searchTitle": "Search",
+    "areasTitle": "Popular areas",
+    "advertisersTitle": "For advertisers",
+    "companyTitle": "Mahalla",
+    "aboutUs": "About us",
+    "contact": "Contact",
+    "terms": "Terms of use",
+    "privacy": "Privacy policy",
+    "help": "Help",
+    "rights": "© {year} Mahalla. All rights reserved."
+  },
+  "comingSoon": {
+    "title": "This page is being built",
+    "text": "We are building this page as part of the current development phase of Mahalla. It will be available soon."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page may have moved, or the link may be incorrect."
+  },
+  "design": {
+    "title": "Design system",
+    "intro": "Mahalla's core components as they appear in the Arabic and English interfaces. This is an internal review page.",
+    "colors": "Colours",
+    "typography": "Typography",
+    "buttons": "Buttons",
+    "badges": "Badges",
+    "chips": "Chips",
+    "forms": "Form fields",
+    "cards": "Property cards",
+    "phoneLabel": "Phone number",
+    "phoneHint": "We'll send you a verification code by WhatsApp or SMS",
+    "phoneInvalid": "Enter a valid Iraqi mobile number starting with 07",
+    "phoneValid": "Will be saved in international format: {value}",
+    "bedrooms": "Bedrooms",
+    "sampleHeading": "Page heading",
+    "sampleBody": "Newly built third-floor apartment with three bedrooms and a large living room, neighbourhood generator and dedicated power line.",
+    "buttonPrimary": "List your property",
+    "buttonSecondary": "Save search",
+    "buttonGhost": "Cancel",
+    "buttonDanger": "Delete listing",
+    "buttonWhatsapp": "WhatsApp",
+    "badgeNew": "New",
+    "badgePending": "Pending review",
+    "badgeExpired": "Expired"
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6E1F2"/><stop offset="1" stop-color="#EEF3FB"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#s)"/><circle cx="330" cy="62" r="22" fill="#FAEDC8"/>
+<rect y="232" width="400" height="68" fill="#CDBB97"/>
+
+<rect y="190" width="400" height="110" fill="#D9C9A8"/>
+<g stroke="#A08A64" stroke-width="3"><line x1="60" y1="200" x2="60" y2="232"/><line x1="88" y1="200" x2="88" y2="232"/><line x1="116" y1="200" x2="116" y2="232"/><line x1="144" y1="200" x2="144" y2="232"/><line x1="172" y1="200" x2="172" y2="232"/><line x1="200" y1="200" x2="200" y2="232"/><line x1="228" y1="200" x2="228" y2="232"/><line x1="256" y1="200" x2="256" y2="232"/><line x1="284" y1="200" x2="284" y2="232"/><line x1="312" y1="200" x2="312" y2="232"/><line x1="340" y1="200" x2="340" y2="232"/><line x1="56" y1="208" x2="344" y2="208"/><line x1="56" y1="222" x2="344" y2="222"/></g>
+<rect x="150" y="150" width="100" height="44" fill="#FFFFFF" rx="4"/><rect x="196" y="194" width="8" height="38" fill="#8C7A5B"/>
+<rect x="164" y="164" width="72" height="6" fill="#22489A" rx="3"/><rect x="176" y="176" width="48" height="6" fill="#D4A12A" rx="3"/>
+<rect x="20" y="170" width="60" height="22" fill="#E2D6C3"/><rect x="320" y="160" width="70" height="32" fill="#E2D6C3"/>
+</svg>

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Formatting
+        run: pnpm format:check
+      - name: Translations (Arabic and English key parity)
+        run: pnpm i18n:check
+      - name: Typecheck, unit tests, lint
+        run: pnpm turbo run typecheck test lint
+      - name: Build
+        run: pnpm build
+      - name: Install Playwright browser
+        run: pnpm --filter @mahalla/web exec playwright install --with-deps chromium
+      - name: End-to-end tests (AR/EN, desktop/mobile)
+        run: pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/test-results
+          retention-days: 7
